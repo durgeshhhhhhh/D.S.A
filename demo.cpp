@@ -1,28 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print(int n, int i, int arr[])
+bool print(int i, string &s)
 {
-  if (i >= n/2)
-    return;
-
-  swap(arr[i], arr[n-i-1]);
-
-  print(n, i + 1, arr);
+      if(i >= s.size()/2) return true;
+      if(s[i] != s[s.size()-i-1]) return false;
+      return print(i+1, s);
 }
 int main()
 {
-  int n;
-  cin >> n;
-  int arr[n];
-  for (int i = 0; i < n; i++)
-  {
-    cin >> arr[i];
-  }
-
-  print(n, 0, arr);
-  for (int i = 0; i < n; i++)
-  {
-    cout << arr[i] << " ";
-  }
+  string s = "malayalam";
+  cout << print(0, s);
 }
