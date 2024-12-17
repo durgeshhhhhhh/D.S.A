@@ -1,14 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool print(int i, string &s)
+int fibonacci(int n)
 {
-      if(i >= s.size()/2) return true;
-      if(s[i] != s[s.size()-i-1]) return false;
-      return print(i+1, s);
+    if(n <= 1) return n;
+
+    int last = fibonacci(n-1);
+    int secondlast = fibonacci(n-2);
+
+    return last + secondlast; 
 }
 int main()
 {
-  string s = "malayalam";
-  cout << print(0, s);
+  int n;
+  cin >> n;
+
+  cout << fibonacci(n);
+
+  return 0;
 }
