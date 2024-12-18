@@ -1,21 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int fibonacci(int n)
-{
-    if(n <= 1) return n;
-
-    int last = fibonacci(n-1);
-    int secondlast = fibonacci(n-2);
-
-    return last + secondlast; 
-}
 int main()
 {
   int n;
   cin >> n;
+  int arr[n];
 
-  cout << fibonacci(n);
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  }
+
+  int hash[13] = {0};
+  for (int i = 0; i < n; i++)
+  {
+    hash[arr[i]] += 1;
+  }
+
+  int q;
+  cin >> q;
+  while (q--)
+  {
+    int number;
+    cin >> number;
+
+    cout << hash[number] << endl;
+  }
 
   return 0;
 }
