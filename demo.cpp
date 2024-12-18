@@ -20,13 +20,22 @@ int main()
 
   int q;
   cin >> q;
-  while (q--)
+
+  for (int i = q; i > 0; i--)
   {
     int number;
     cin >> number;
 
     cout << hash[number] << endl;
   }
+
+  /*while (q--)
+  {
+    int number;
+    cin >> number;
+
+    cout << hash[number] << endl;
+  }*/
 
   return 0;
 }
