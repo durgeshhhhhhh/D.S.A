@@ -1,13 +1,9 @@
-abcdaAHAGCTTTAwerbefh
-11
-a
-g
-h
-b
-c
-A
-T
-f
-h
-z
-Z
+8
+1 2 3 3 1 2 12 100
+6
+1
+2
+3
+4
+12
+100
