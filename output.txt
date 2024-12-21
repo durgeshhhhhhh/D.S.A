@@ -1,11 +1,9 @@
-1 --> 2
-2 --> 2
-3 --> 2
-12 --> 1
-100 --> 1
+Maximum Frequency Element is 3
+Maximum Frequency is 5
+Minimum Frequency Element is 12
+Minimum Frequency is 1
 2
-2
-2
+3
+5
 0
-1
 1
