@@ -1,23 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void selection_sort(int n, int arr[])
+void bubbleSort(int n, int arr[])
 {
-  for (int i = 0; i <= n-2; i++)
+  for (int i = 0; i < n - 1; i++)
   {
-    int mini = i;
-
-    for (int j = i; j <= n - 1; j++)
+    for (int j = 0; j < n - i - 1; j++)
     {
-      if (arr[j] < arr[mini])
+      if (arr[j] > arr[j + 1])
       {
-        mini = j;
+        // swap(arr[j], arr[j+1]);
+
+        int temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
       }
-      /*int temp = arr[mini];
-      arr[mini] = arr[i];
-      arr[i] = temp;*/
-      swap(arr[i], arr[mini]);  
-    } 
+    }
   }
 }
 
@@ -32,10 +30,12 @@ int main()
     cin >> arr[i];
   }
 
-  selection_sort(n, arr);
+  bubbleSort(n, arr);
 
   for (int i = 0; i < n; i++)
   {
     cout << arr[i] << " ";
   }
+
+  return 0;
 }
