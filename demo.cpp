@@ -1,34 +1,63 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void insertionSort(int n, int arr[])
+void selection_sort(int n, int arr[])
 {
-  cout << "Stepwise visualization of sorting:" << endl
-       << endl;
+  for (int i = 0; i < n - 1; i++)
+  {
+    int mini = i;
+    for (int j = i; j < n; j++)
+    {
+      if (arr[j] < arr[mini])
+      {
+        mini = j;
+      }
+    }
+    int temp = arr[mini];
+    arr[mini] = arr[i];
+    arr[i] = temp;
+  }
+}
 
+void bubble_sort(int n, int arr[])
+{
+  for (int i = 0; i < n - 1; i++)
+  {
+    bool is_swap = false;
+    for (int j = 0; j < n - i - 1; j++)
+    {
+      if (arr[j] > arr[j + 1])
+      {
+        swap(arr[j], arr[j + 1]);
+        is_swap = true;
+      }
+    }
+    if (!is_swap)
+    {
+      break;
+    }
+  }
+}
+
+void insertion_sort(int n, int arr[])
+{
   for (int i = 0; i < n; i++)
   {
-    int j = i;
-
-    while (j > 0 && arr[j - 1] > arr[j])
+    /*int j = i;
+    while (j > 0 && arr[j] < arr[j - 1])
     {
-      // swap(arr[j - 1], arr[j]);
-
-      int temp = arr[j - 1];
-      arr[j - 1] = arr[j];
-      arr[j] = temp;
+      swap(arr[j], arr[j - 1]);
       j--;
-    }
+    }*/
 
-    for (int i = 0; i < n; i++)
+    for (int j = i; j > 0; j--)
     {
-      cout << arr[i] << " ";
+      if (arr[j] < arr[j - 1])
+      {
+        swap(arr[j], arr[j - 1]);
+      }
     }
-
-    cout << endl;
   }
-
-  cout << endl;
 }
 
 int main()
@@ -42,13 +71,11 @@ int main()
     cin >> arr[i];
   }
 
-  insertionSort(n, arr);
+  insertion_sort(n, arr);
 
-  cout << "Final Output:" << endl;
-
-  for (int i = 0; i < n; i++)
+  for (int k = 0; k < n; k++)
   {
-    cout << arr[i] << " ";
+    cout << arr[k] << " ";
   }
 
   return 0;
