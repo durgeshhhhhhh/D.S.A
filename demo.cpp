@@ -1,81 +1,73 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void selection_sort(int n, int arr[])
+void merge(vector<int> &arr, int low, int mid, int high)
 {
-  for (int i = 0; i < n - 1; i++)
+  vector<int> temp;
+  int left = low;
+  int right = mid + 1;
+
+  while (left <= mid && right <= high)
   {
-    int mini = i;
-    for (int j = i; j < n; j++)
+    if (arr[left] <= arr[right])
     {
-      if (arr[j] < arr[mini])
-      {
-        mini = j;
-      }
+      temp.push_back(arr[left]);
+      left++;
     }
-    int temp = arr[mini];
-    arr[mini] = arr[i];
-    arr[i] = temp;
+    else
+    {
+      temp.push_back(arr[right]);
+      right++;
+    }
+  }
+
+  while (left <= mid)
+  {
+    temp.push_back(arr[left]);
+    left++;
+  }
+
+  while (right <= high)
+  {
+    temp.push_back(arr[right]);
+    right++;
+  }
+
+  for (int i = low; i <= high; i++)
+  {
+    arr[i] = temp[i - low];
   }
 }
 
-void bubble_sort(int n, int arr[])
+void mergeSort(vector<int> &arr, int low, int high)
 {
-  for (int i = 0; i < n - 1; i++)
-  {
-    bool is_swap = false;
-    for (int j = 0; j < n - i - 1; j++)
-    {
-      if (arr[j] > arr[j + 1])
-      {
-        swap(arr[j], arr[j + 1]);
-        is_swap = true;
-      }
-    }
-    if (!is_swap)
-    {
-      break;
-    }
-  }
-}
+  if (low >= high)
+    return;
 
-void insertion_sort(int n, int arr[])
-{
-  for (int i = 0; i < n; i++)
-  {
-    /*int j = i;
-    while (j > 0 && arr[j] < arr[j - 1])
-    {
-      swap(arr[j], arr[j - 1]);
-      j--;
-    }*/
+  int mid = (low + high) / 2;
 
-    for (int j = i; j > 0; j--)
-    {
-      if (arr[j] < arr[j - 1])
-      {
-        swap(arr[j], arr[j - 1]);
-      }
-    }
-  }
+  mergeSort(arr, low, mid);
+  mergeSort(arr, mid + 1, high);
+
+  merge(arr, low, mid, high);
 }
 
 int main()
 {
   int n;
   cin >> n;
-  int arr[n];
+  vector<int> arr(n);
 
   for (int i = 0; i < n; i++)
   {
     cin >> arr[i];
   }
 
-  insertion_sort(n, arr);
+  mergeSort(arr, 0, n - 1);
 
-  for (int k = 0; k < n; k++)
+  for (int i = 0; i < n; i++)
   {
-    cout << arr[k] << " ";
+    cout << arr[i] << " ";
   }
 
   return 0;
