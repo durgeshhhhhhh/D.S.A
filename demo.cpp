@@ -21,7 +21,15 @@ int main()
       max = arr[i];
   }
 
-  cout << "Largest element in an array is " << max;
+  int secondMax = arr[0];
+
+  for (int i = 0; i < n; i++)
+  {
+    if (arr[i] > secondMax && arr[i] != max)
+      secondMax = arr[i];
+  }
+
+  cout << "Second Largest element in an array is " << secondMax;
 
   return 0;
 }
