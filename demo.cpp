@@ -9,7 +9,16 @@ int partIndex(vector<int> &arr, int low, int high)
 
   while (i < j)
   {
+<<<<<<< HEAD
     while (arr[j] >= pivot && j >= low + 1)
+=======
+    while (arr[i] <= pivot && i <= high-1)
+    {
+      i++;
+    }
+
+    while (arr[j] > pivot && j >= low+1)
+>>>>>>> 768103a69f0ed413c98dab05fba672402534eb0c
     {
       j--;
     }
