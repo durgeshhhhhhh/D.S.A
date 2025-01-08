@@ -1,61 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void merge(vector<int> &arr, int low, int mid, int high)
+int partIndex(vector<int> &arr, int low, int high)
 {
-  vector<int> temp;
-  int left = low;
-  int right = mid + 1;
+  int pivot = arr[low];
+  int i = low;
+  int j = high;
 
-  while (left <= mid && right <= high)
+  while (i < j)
   {
-    if (arr[left] <= arr[right])
+    while (arr[i] <= pivot && i <= high-1)
     {
-      temp.push_back(arr[left]);
-      left++;
+      i++;
     }
-    else
+
+    while (arr[j] > pivot && j >= low-1)
     {
-      temp.push_back(arr[right]);
-      right++;
+      j--;
     }
+
+    if (i < j)
+      swap(arr[i], arr[j]);
   }
 
-  while (left <= mid)
-  {
-    temp.push_back(arr[left]);
-    left++;
-  }
-
-  while (right <= high)
-  {
-    temp.push_back(arr[right]);
-    right++;
-  }
-
-  for (int i = low; i <= high; i++)
-  {
-    arr[i] = temp[i - low];
-  }
+  swap(arr[j], arr[low]);
+  return j;
 }
 
-void mergeSort(vector<int> &arr, int low, int high)
+void quickSort(vector<int> &arr, int low, int high)
 {
-  if (low >= high)
-    return;
+  if (low < high)
+  {
+    int partition = partIndex(arr, low, high);
 
-  int mid = (low + high) / 2;
-
-  mergeSort(arr, low, mid);
-  mergeSort(arr, mid + 1, high);
-
-  merge(arr, low, mid, high);
+    quickSort(arr, low, partition - 1);
+    quickSort(arr, partition + 1, high);
+  }
 }
 
 int main()
 {
   int n;
   cin >> n;
+
   vector<int> arr(n);
 
   for (int i = 0; i < n; i++)
@@ -63,7 +50,7 @@ int main()
     cin >> arr[i];
   }
 
-  mergeSort(arr, 0, n - 1);
+  quickSort(arr, 0, n - 1);
 
   for (int i = 0; i < n; i++)
   {
