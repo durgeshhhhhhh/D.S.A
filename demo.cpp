@@ -3,28 +3,28 @@ using namespace std;
 
 int partIndex(vector<int> &arr, int low, int high)
 {
-  int pivot = arr[low];
+  int pivot = arr[high];
   int i = low;
   int j = high;
 
   while (i < j)
   {
-    while (arr[i] <= pivot && i <= high-1)
-    {
-      i++;
-    }
-
-    while (arr[j] > pivot && j >= low-1)
+    while (arr[j] >= pivot && j >= low + 1)
     {
       j--;
+    }
+
+    while (arr[i] < pivot && i <= high - 1)
+    {
+      i++;
     }
 
     if (i < j)
       swap(arr[i], arr[j]);
   }
 
-  swap(arr[j], arr[low]);
-  return j;
+  swap(arr[i], arr[high]);
+  return i;
 }
 
 void quickSort(vector<int> &arr, int low, int high)
