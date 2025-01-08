@@ -1,1 +1,1 @@
-Second Largest element in an array is 8
+Second Largest element in an array is 43

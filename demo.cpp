@@ -13,23 +13,23 @@ int main()
     cin >> arr[i];
   }
 
-  int largest = arr[0];
-  int secondLargest = INT_MIN;
+  int smallest = arr[0];
+  int secondSmallest = INT_MAX;
 
   for (int i = 0; i < n; i++)
   {
-    if (arr[i] > largest)
+    if (arr[i] < smallest)
     {
-      secondLargest = largest;
-      largest = arr[i];
+      secondSmallest = smallest;
+      smallest = arr[i];
     }
-    else if (arr[i] < largest && arr[i] > secondLargest)
+    else if (arr[i] > smallest && arr[i] < secondSmallest)
     {
-      secondLargest = arr[i];
+      secondSmallest = arr[i];
     }
   }
 
-  cout << "Second Largest element in an array is " << secondLargest;
+  cout << "Second Largest element in an array is " << secondSmallest;
 
   return 0;
 }
