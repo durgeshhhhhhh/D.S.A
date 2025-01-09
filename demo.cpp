@@ -5,6 +5,7 @@ int main()
 {
   int n;
   cin >> n;
+
   vector<int> arr(n);
 
   for (int i = 0; i < n; i++)
@@ -12,29 +13,18 @@ int main()
     cin >> arr[i];
   }
 
-  bool is_sorted;
+  int i = 0;
 
-  for (int i = 1; i < n; i++)
+  for (int j = 0; j < n; j++)
   {
-    if (arr[i] > arr[i - 1])
+    if (arr[j] != arr[i])
     {
-      is_sorted = true;
-    }
-    else
-    {
-      is_sorted = false;
-      break;
+      arr[i+1] = arr[j];
+      i++; 
     }
   }
 
-  if (!is_sorted)
-  {
-    cout << "Array is not Sorted";
-  }
-  else
-  {
-    cout << "Array is sorted";
-  }
+  cout << i+1;
 
   return 0;
 }
