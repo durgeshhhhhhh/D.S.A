@@ -1,6 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void rotate(vector<int> &arr, int n, int k)
+{
+  vector<int> temp;
+
+    k = k % arr.size();
+
+  for (int i = 0; i < k; i++)
+  {
+    temp.push_back(arr[i]);
+  }
+
+  for (int j = k; j < n; j++)
+  {
+    arr[j - k] = arr[j];
+  }
+
+  for (int i = n - k; i < arr.size(); i++)
+  {
+    arr[i] = temp[i - (n - k)];
+  }
+}
+
 int main()
 {
   int n;
@@ -13,16 +35,12 @@ int main()
     cin >> arr[i];
   }
 
-  int temp = arr[0];
+  int d;
+  cin >> d;
 
-  for (int j = 1; j < n; j++)
-  {
-    arr[j - 1] = arr[j];
-  }
+  rotate(arr, n, d);
 
-  arr[n - 1] = temp;
-
-  for (int i = 0; i<n; i++)
+  for (int i = 0; i < n; i++)
   {
     cout << arr[i] << " ";
   }
