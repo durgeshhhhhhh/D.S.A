@@ -5,7 +5,6 @@ int main()
 {
   int n;
   cin >> n;
-
   vector<int> arr(n);
 
   for (int i = 0; i < n; i++)
@@ -13,23 +12,29 @@ int main()
     cin >> arr[i];
   }
 
-  int smallest = arr[0];
-  int secondSmallest = INT_MAX;
+  bool is_sorted;
 
-  for (int i = 0; i < n; i++)
+  for (int i = 1; i < n; i++)
   {
-    if (arr[i] < smallest)
+    if (arr[i] > arr[i - 1])
     {
-      secondSmallest = smallest;
-      smallest = arr[i];
+      is_sorted = true;
     }
-    else if (arr[i] > smallest && arr[i] < secondSmallest)
+    else
     {
-      secondSmallest = arr[i];
+      is_sorted = false;
+      break;
     }
   }
 
-  cout << "Second Largest element in an array is " << secondSmallest;
+  if (!is_sorted)
+  {
+    cout << "Array is not Sorted";
+  }
+  else
+  {
+    cout << "Array is sorted";
+  }
 
   return 0;
 }
