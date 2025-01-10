@@ -1,26 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void reverse(vector<int> &arr, int start, int end)
+void moveZeroes(vector<int> &arr, int n)
 {
-  while (start < end)
+  vector<int> temp;
+
+  for (int i = 0; i < n; i++)
   {
-    int temp = arr[start];
-    arr[start] = arr[end];
-    arr[end] = temp;
-    start++;
-    end--;
+    if (arr[i] != 0)
+    {
+      temp.push_back(arr[i]);
+    }
   }
-}
 
-void rotate(vector<int> &arr, int n, int k)
-{
-  k = k % n;
-  if(k == 0) return;
+  for (int i = 0; i < temp.size(); i++)
+  {
+    arr[i] = temp[i];
+  }
 
-  reverse(arr, 0, n - k - 1);
-  reverse(arr, n - k, n - 1);
-  reverse(arr, 0, n - 1);
+  for (int i = temp.size(); i < n; i++)
+  {
+    arr[i] = 0;
+  }
 }
 
 int main()
@@ -35,10 +36,7 @@ int main()
     cin >> arr[i];
   }
 
-  int k;
-  cin >> k;
-
-  rotate(arr, n, k);
+  moveZeroes(arr, n);
 
   for (int i = 0; i < n; i++)
   {
