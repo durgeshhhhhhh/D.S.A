@@ -1,29 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void moveZeroes(vector<int> &arr, int n)
+int linearSearch(vector<int> &nums, int k)
 {
-  int j = -1;
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < nums.size(); i++)
   {
-    if (arr[i] == 0)
+    if (k == nums[i])
     {
-      j = i;
-      break;
+      return i;
     }
   }
-
-  if (j == -1)
-    return;
-
-  for (int i = j + 1; i < n; i++)
-  {
-    if (arr[i] != 0)
-    {
-      swap(arr[i], arr[j]);
-      j++;
-    }
-  }
+  return -1;
 }
 
 int main()
@@ -31,19 +18,18 @@ int main()
   int n;
   cin >> n;
 
-  vector<int> arr(n);
+  vector<int> nums(n);
 
   for (int i = 0; i < n; i++)
   {
-    cin >> arr[i];
+    cin >> nums[i];
   }
 
-  moveZeroes(arr, n);
+  int k;
+  cin >> k;
 
-  for (int i = 0; i < n; i++)
-  {
-    cout << arr[i] << " ";
-  }
+  int elementPresent = linearSearch(nums, k);
 
+  cout << "Element present at index " << elementPresent;
   return 0;
 }
