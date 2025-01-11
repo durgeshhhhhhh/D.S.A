@@ -1,35 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int linearSearch(vector<int> &nums, int k)
+vector<int> findUnion(vector<int> &a, vector<int> &b)
 {
-  for (int i = 0; i < nums.size(); i++)
+  set<int> st;
+
+  for (int i = 0; i < a.size(); i++)
   {
-    if (k == nums[i])
-    {
-      return i;
-    }
+    st.insert(a[i]);
   }
-  return -1;
+
+  for (int i = 0; i < b.size(); i++)
+  {
+    st.insert(b[i]);
+  }
+
+  vector<int> temp;
+
+  for (auto it : st)
+  {
+    temp.push_back(it);
+  }
+
+  return temp;
 }
 
 int main()
 {
   int n;
   cin >> n;
-
-  vector<int> nums(n);
+  vector<int> a(n);
 
   for (int i = 0; i < n; i++)
   {
-    cin >> nums[i];
+    cin >> a[i];
   }
 
   int k;
   cin >> k;
+  vector<int> b(k);
 
-  int elementPresent = linearSearch(nums, k);
+  for (int i = 0; i < k; i++)
+  {
+    cin >> b[i];
+  }
 
-  cout << "Element present at index " << elementPresent;
+  vector<int> result = findUnion(a, b);
+
+  cout << "::::: Union of two array :::::" << endl;
+
+  for (int i = 0; i < result.size(); i++)
+  {
+    cout << result[i] << " ";
+  }
+
   return 0;
 }
