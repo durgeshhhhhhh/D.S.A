@@ -3,25 +3,27 @@ using namespace std;
 
 vector<int> findUnion(vector<int> &a, vector<int> &b)
 {
-  int visit[b.size()] = {0};
   vector<int> intst;
+  int i = 0;
+  int j = 0;
 
-  for (int i = 0; i < a.size(); i++)
+  while (i < a.size() && j < b.size())
   {
-    for (int j = 0; j < b.size(); j++)
+    if (a[i] < b[j])
     {
-      if (a[i] == b[j] && visit[j] == 0)
-      {
-        intst.push_back(a[i]);
-        visit[j] = 1;
-        break;
-      }
-
-      if (b[j] > a[i])
-        break;
+      i++;
+    }
+    else if (a[i] > b[j])
+    {
+      j++;
+    }
+    else
+    {
+      intst.push_back(a[i]);
+      i++;
+      j++;
     }
   }
-
   return intst;
 }
 
@@ -47,7 +49,7 @@ int main()
 
   vector<int> result = findUnion(a, b);
 
-  cout << "::::: Union of two array :::::" << endl;
+  cout << "::::: Intersection of two array :::::" << endl;
 
   for (int i = 0; i < result.size(); i++)
   {
