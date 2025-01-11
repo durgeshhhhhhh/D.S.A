@@ -3,20 +3,15 @@ using namespace std;
 
 int missingNumber(vector<int> &arr, int n)
 {
-  int hash[n + 1] = {0};
+  int s1 = (n * (n + 1)) / 2;
 
-  for (int i = 0; i <= n; i++)
+  int s2 = 0;
+  for (int i = 0; i < n; i++)
   {
-    hash[arr[i]] = 1;
+    s2 = s2 + arr[i];
   }
 
-  for (int i = 1; i <= n; i++)
-  {
-    if (hash[i] == 0)
-      return i;
-  }
-
-  return -1;
+  return s1 - s2;
 }
 
 int main()
