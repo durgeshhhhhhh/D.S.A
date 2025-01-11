@@ -1,22 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int missingNumber(vector<int> &arr)
+int missingNumber(vector<int> &arr, int n)
 {
-  for (int i = 1; i <= arr.size(); i++)
+  int hash[n + 1] = {0};
+
+  for (int i = 0; i <= n; i++)
   {
-    int flag = 0;
-    for (int j = 0; j < arr.size(); j++)
-    {
-      if (arr[j] == i)
-      {
-        flag = 1;
-        break;
-      }
-    }
-    if (flag == 0)
+    hash[arr[i]] = 1;
+  }
+
+  for (int i = 1; i <= n; i++)
+  {
+    if (hash[i] == 0)
       return i;
   }
+
   return -1;
 }
 
@@ -31,7 +30,7 @@ int main()
     cin >> arr[i];
   }
 
-  int result = missingNumber(arr);
+  int result = missingNumber(arr, n);
 
   cout << result;
 
