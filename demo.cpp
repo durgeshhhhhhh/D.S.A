@@ -3,51 +3,26 @@ using namespace std;
 
 vector<int> findUnion(vector<int> &a, vector<int> &b)
 {
-  vector<int> unionArr;
+  int visit[b.size()] = {0};
+  vector<int> intst;
 
-  int i = 0;
-  int j = 0;
-
-  while (i < a.size() && j < b.size())
+  for (int i = 0; i < a.size(); i++)
   {
-    if (a[i] <= b[j])
+    for (int j = 0; j < b.size(); j++)
     {
-      if (unionArr.size() == 0 || unionArr.back() != a[i])
+      if (a[i] == b[j] && visit[j] == 0)
       {
-        unionArr.push_back(a[i]);
+        intst.push_back(a[i]);
+        visit[j] = 1;
+        break;
       }
-      i++;
-    }
-    else
-    {
-      if (unionArr.size() == 0 || unionArr.back() != b[j])
-      {
-        unionArr.push_back(b[j]);
-      }
-      j++;
+
+      if (b[j] > a[i])
+        break;
     }
   }
 
-  while (i < a.size())
-  {
-    if (unionArr.size() == 0 || unionArr.back() != a[i])
-      {
-        unionArr.push_back(a[i]);
-      }
-      i++;
-  }
-
-  while (j < b.size())
-  {
-    if (unionArr.size() == 0 || unionArr.back() != b[j])
-      {
-        unionArr.push_back(b[j]);
-      }
-      j++;
-  }
-
-  return unionArr;
-
+  return intst;
 }
 
 int main()
