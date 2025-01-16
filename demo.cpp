@@ -1,33 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int missingNumber(vector<int> &arr, int n)
+int maxConsecutiveOnes(vector<int> &arr, int n)
 {
-  int s1 = (n * (n + 1)) / 2;
+    int maxi = 0;
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == 1)
+        {
+            cnt++;
+            maxi = max(maxi, cnt);
+        }
+        else
+        {
+            cnt = 0;
+        }
+    }
 
-  int s2 = 0;
-  for (int i = 0; i < n; i++)
-  {
-    s2 = s2 + arr[i];
-  }
-
-  return s1 - s2;
+    return maxi;
 }
 
 int main()
 {
-  int n;
-  cin >> n;
-  vector<int> arr(n);
+    int n;
+    cin >> n;
 
-  for (int i = 0; i < n; i++)
-  {
-    cin >> arr[i];
-  }
+    vector<int> arr(n);
 
-  int result = missingNumber(arr, n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
 
-  cout << result;
+    int result = maxConsecutiveOnes(arr, n);
+    cout << result;
 
-  return 0;
+    return 0;
 }
