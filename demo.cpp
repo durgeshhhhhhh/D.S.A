@@ -1,24 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int maxConsecutiveOnes(vector<int> &arr, int n)
+int numberAppearsOnce(vector<int> &arr, int n)
 {
-    int maxi = 0;
-    int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        if (arr[i] == 1)
-        {
-            cnt++;
-            maxi = max(maxi, cnt);
-        }
-        else
-        {
-            cnt = 0;
-        }
-    }
+        int cnt = 0;
 
-    return maxi;
+        for (int j = 0; j < n; j++)
+        {
+            if (arr[j] == arr[i])
+            {
+                cnt++;
+            }
+        }
+        if (cnt == 1)
+            return arr[i];
+    }
+    return -1;
 }
 
 int main()
@@ -33,7 +32,7 @@ int main()
         cin >> arr[i];
     }
 
-    int result = maxConsecutiveOnes(arr, n);
+    int result = numberAppearsOnce(arr, n);
     cout << result;
 
     return 0;
