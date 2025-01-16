@@ -3,20 +3,26 @@ using namespace std;
 
 int numberAppearsOnce(vector<int> &arr, int n)
 {
+    int max = arr[0];
     for (int i = 0; i < n; i++)
     {
-        int cnt = 0;
-
-        for (int j = 0; j < n; j++)
-        {
-            if (arr[j] == arr[i])
-            {
-                cnt++;
-            }
-        }
-        if (cnt == 1)
-            return arr[i];
+        if (arr[i] > max)
+            max = arr[i];
     }
+
+    vector<int> hash(max + 1, 0);
+
+    for (int i = 0; i < n; i++)
+    {
+        hash[arr[i]]++;
+    }
+
+    for (int i = 0; i <= max; i++)
+    {
+        if (hash[i] == 1)
+            return i;
+    }
+
     return -1;
 }
 
