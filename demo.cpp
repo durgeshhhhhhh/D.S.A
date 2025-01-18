@@ -1,18 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int missingNumber(vector<int> &arr, int n)
+int largestSubArray(vector<int> &arr, int n, int k)
 {
-    int xor1 = 0;
-    int xor2 = 0;
-    for (int i = 0; i < n-1; i++)
+    int len = 0;
+    for (int i = 0; i < n; i++)
     {
-        xor2 = xor2 ^ arr[i];
-        xor1 = xor1 ^ i+1;
-    }
-    xor1 = xor1 ^ n;
+        int sum = 0;
+        for (int j = i; j < n; j++)
+        {
+            sum += arr[j];
 
-    return xor1 ^ xor2;
+            if (sum == k)
+            {
+                len = max(len, j - i + 1);
+            }
+        }
+    }
+    return len;
 }
 
 int main()
@@ -27,7 +32,10 @@ int main()
         cin >> arr[i];
     }
 
-    int result = missingNumber(arr, n);
+    int k;
+    cin >> k;
+
+    int result = largestSubArray(arr, n, k);
     cout << result;
 
     return 0;
