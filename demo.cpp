@@ -1,23 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int largestSubArray(vector<int> &arr, int n, int k)
+int fibonnaci(int n)
 {
-    int len = 0;
-    for (int i = 0; i < n; i++)
-    {
-        int sum = 0;
-        for (int j = i; j < n; j++)
-        {
-            sum += arr[j];
+    if (n < 2)
+        return n;
 
-            if (sum == k)
-            {
-                len = max(len, j - i + 1);
-            }
-        }
+    vector<int> ans(n + 1);
+    ans[0] = 0;
+    ans[1] = 1;
+
+    for (int i = 2; i <= n; i++)
+    {
+        ans[i] = ans[i - 1] + ans[i - 2];
     }
-    return len;
+
+    return ans[n];
 }
 
 int main()
@@ -25,17 +23,7 @@ int main()
     int n;
     cin >> n;
 
-    vector<int> arr(n);
-
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
-
-    int k;
-    cin >> k;
-
-    int result = largestSubArray(arr, n, k);
+    int result = fibonnaci(n);
     cout << result;
 
     return 0;
