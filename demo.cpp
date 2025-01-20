@@ -1,21 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int longestSubArray(vector<int> arr, int n, int k)
+bool twoSum(vector<int> arr, int n, int k)
 {
-    int maxi = 0;
     for (int i = 0; i < n; i++)
     {
         int sum = 0;
-        for (int j = i; j < n; j++)
+        for (int j = 0; j < n; j++)
         {
-            sum += arr[j];
+            sum = arr[i] + arr[j];
 
-            if (sum == 3)
-                maxi = max(maxi, j - i + 1);
+            if (sum == k)
+                return true;
         }
     }
-    return maxi;
+    return false;
 }
 
 int main()
@@ -33,7 +32,7 @@ int main()
     int k;
     cin >> k;
 
-    int result = longestSubArray(arr, n, k);
+    bool result = twoSum(arr, n, k);
     cout << result;
 
     return 0;
