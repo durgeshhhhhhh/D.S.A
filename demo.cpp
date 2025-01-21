@@ -1,22 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> twoSum(vector<int> arr, int n, int k)
+bool twoSum(vector<int> arr, int n, int k)
 {
-    map<int, int> mpp;
+    int left = 0;
+    int right = n - 1;
+    sort(arr.begin(), arr.end());
 
-    for (int i = 0; i < n; i++)
+    while (left < right)
     {
-        int moreNeeded = k - arr[i];
-
-        if (mpp.find(moreNeeded) != mpp.end())
+        int sum = arr[left] + arr[right];
+        if (sum == k)
         {
-            return {mpp[moreNeeded], i};
+            return true;
         }
-
-        mpp[arr[i]] = i;
+        else if (sum < k)
+        {
+            left++;
+        }
+        else if (sum > k)
+        {
+            right--;
+        }
     }
-    return {-1, -1};
+
+    return false;
 }
 
 int main()
@@ -34,16 +42,17 @@ int main()
     int k;
     cin >> k;
 
-    vector<int> result = twoSum(arr, n, k);
+    bool result = twoSum(arr, n, k);
+    cout << result;
 
-    if (result[0] == -1 && result[1] == -1)
+    /*if (result[0] == -1 && result[1] == -1)
     {
         cout << "No valid pair found";
     }
     else
     {
         cout << "Indices: " << result[0] << ", " << result[1];
-    }
+    }*/
 
     return 0;
 }
