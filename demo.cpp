@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool twoSum(vector<int> arr, int n, int k)
+vector<int> twoSum(vector<int> arr, int n, int k)
 {
     int left = 0;
     int right = n - 1;
@@ -12,19 +12,17 @@ bool twoSum(vector<int> arr, int n, int k)
         int sum = arr[left] + arr[right];
         if (sum == k)
         {
-            return true;
+            return {left, right};
         }
         else if (sum < k)
         {
             left++;
         }
-        else if (sum > k)
-        {
+        else
             right--;
-        }
     }
 
-    return false;
+    return {-1, -1};
 }
 
 int main()
@@ -42,17 +40,16 @@ int main()
     int k;
     cin >> k;
 
-    bool result = twoSum(arr, n, k);
-    cout << result;
+    vector<int> result = twoSum(arr, n, k);
 
-    /*if (result[0] == -1 && result[1] == -1)
+    if (result[0] == -1 && result[1] == -1)
     {
         cout << "No valid pair found";
     }
     else
     {
         cout << "Indices: " << result[0] << ", " << result[1];
-    }*/
+    }
 
     return 0;
 }
