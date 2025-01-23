@@ -1,28 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> twoSum(vector<int> arr, int n, int k)
+void sortColors(vector<int> &arr, int n)
 {
-    int left = 0;
-    int right = n - 1;
-    sort(arr.begin(), arr.end());
+    int cnt0 = 0;
+    int cnt1 = 0;
+    int cnt2 = 0;
 
-    while (left < right)
+    for (int i = 0; i < n; i++)
     {
-        int sum = arr[left] + arr[right];
-        if (sum == k)
+        if (arr[i] == 0)
         {
-            return {left, right};
+            cnt0++;
         }
-        else if (sum < k)
+        else if (arr[i] == 1)
         {
-            left++;
+            cnt1++;
         }
         else
-            right--;
+            cnt2++;
     }
 
-    return {-1, -1};
+    for (int j = 0; j < cnt0; j++)
+    {
+        arr[j] = 0;
+    }
+
+    for (int k = cnt0; k < cnt0 + cnt1; k++)
+    {
+        arr[k] = 1;
+    }
+
+    for (int l = cnt0 + cnt1; l < n; l++)
+    {
+        arr[l] = 2;
+    }
 }
 
 int main()
@@ -37,18 +49,11 @@ int main()
         cin >> arr[i];
     }
 
-    int k;
-    cin >> k;
+    sortColors(arr, n);
 
-    vector<int> result = twoSum(arr, n, k);
-
-    if (result[0] == -1 && result[1] == -1)
+    for (int j = 0; j < n; j++)
     {
-        cout << "No valid pair found";
-    }
-    else
-    {
-        cout << "Indices: " << result[0] << ", " << result[1];
+        cout << arr[j] << " ";
     }
 
     return 0;
