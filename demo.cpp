@@ -1,30 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void sortColors(vector<int> &arr, int n)
+int majorityElement(vector<int> &arr, int n)
 {
-    int low = 0;
-    int mid = 0;
-    int high = n - 1;
-
-    while (mid <= high)
+    for (int i = 0; i < n; i++)
     {
-        if (arr[mid] == 0)
+        int cnt = 0;
+
+        for (int j = 0; j < n; j++)
         {
-            swap(arr[low], arr[mid]);
-            mid++;
-            low++;
+            if (arr[j] == arr[i])
+            {
+                cnt++;
+            }
         }
-        else if (arr[mid] == 1)
-        {
-            mid++;
-        }
-        else
-        {
-            swap(arr[mid], arr[high]);
-            high--;
-        }
+        if (cnt > n / 2)
+            return arr[i];
     }
+
+    return -1;
 }
 
 int main()
@@ -39,12 +33,8 @@ int main()
         cin >> arr[i];
     }
 
-    sortColors(arr, n);
-
-    for (int j = 0; j < n; j++)
-    {
-        cout << arr[j] << " ";
-    }
+    int result = majorityElement(arr, n);
+    cout << result;
 
     return 0;
 }
