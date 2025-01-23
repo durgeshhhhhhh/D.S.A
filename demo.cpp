@@ -3,37 +3,27 @@ using namespace std;
 
 void sortColors(vector<int> &arr, int n)
 {
-    int cnt0 = 0;
-    int cnt1 = 0;
-    int cnt2 = 0;
+    int low = 0;
+    int mid = 0;
+    int high = n - 1;
 
-    for (int i = 0; i < n; i++)
+    while (mid <= high)
     {
-        if (arr[i] == 0)
+        if (arr[mid] == 0)
         {
-            cnt0++;
+            swap(arr[low], arr[mid]);
+            mid++;
+            low++;
         }
-        else if (arr[i] == 1)
+        else if (arr[mid] == 1)
         {
-            cnt1++;
+            mid++;
         }
         else
-            cnt2++;
-    }
-
-    for (int j = 0; j < cnt0; j++)
-    {
-        arr[j] = 0;
-    }
-
-    for (int k = cnt0; k < cnt0 + cnt1; k++)
-    {
-        arr[k] = 1;
-    }
-
-    for (int l = cnt0 + cnt1; l < n; l++)
-    {
-        arr[l] = 2;
+        {
+            swap(arr[mid], arr[high]);
+            high--;
+        }
     }
 }
 
