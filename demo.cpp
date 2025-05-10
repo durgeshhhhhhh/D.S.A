@@ -5,19 +5,28 @@ int main()
 {
     int n;
     cin >> n;
-    int dup = n;
-    int rev_no = 0;
+    int cnt = 0;
+    int dup1 = n;
+    int dup2 = n;
+    int armstrong = 0;
 
     while (n > 0)
     {
-        int lastDigit = n % 10;
-        rev_no = (rev_no * 10) + lastDigit;
-
         n = n / 10;
+        cnt++;
     }
 
-    if (rev_no == dup)
-        cout << "yes, it's a pallindrome";
-    else
-        cout << "No, it's not a pallindrome";
+    while (dup1 > 0)
+    {
+        int lastDigit = dup1 % 10;
+        armstrong = pow(lastDigit, cnt) + armstrong;
+        dup1 = dup1 / 10;
+    }
+
+    if (armstrong == dup2)
+    {
+        cout << "Yes, it's a armstrong number";
+    }
+
+    return 0;
 }
