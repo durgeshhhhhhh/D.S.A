@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile and Run",
+            "type": "process",
+            "command": "cmd.exe",
+            "args": [
+                "/c",
+                "copy /Y D:\\durgesh\\DSA\\demo.cpp D:\\durgesh\\DSA\\jspwTest.cpp && g++ D:\\durgesh\\DSA\\jspwTest.cpp -o D:\\durgesh\\DSA\\jspwTest && D:\\durgesh\\DSA\\jspwTest < D:\\durgesh\\DSA\\input.txt > D:\\durgesh\\DSA\\output.txt && del D:\\durgesh\\DSA\\jspwTest && del D:\\durgesh\\DSA\\jspwTest.cpp"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

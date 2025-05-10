@@ -1,0 +1,2 @@
+Reverse of number is 2001
+Number of digits: 4
