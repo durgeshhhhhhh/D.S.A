@@ -1,25 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void print(int i, int n)
+{
+    if (i > n)
+        return;
+
+    cout << "Durgesh Shekhawat" << endl;
+
+    print(i + 1, n);
+}
+
 int main()
 {
-    int n1;
-    cin >> n1;
-    int n2;
-    cin >> n2;
-    int maxi = 0;
+    int n;
+    cin >> n;
 
-    for (int i = min(n1, n2); i >= 1; i--)
-    {
-
-        if (n1 % i == 0 && n2 % i == 0)
-        {
-            maxi = i;
-            break;
-        }
-    }
-
-    cout << maxi;
-
-    return 0;
+    print(1, n);
 }
