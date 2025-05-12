@@ -9,12 +9,13 @@ int main()
     cin >> n2;
     int maxi = 0;
 
-    for (int i = 1; i <= min(n1, n2); i++)
+    for (int i = min(n1, n2); i >= 1; i--)
     {
 
-        if (n1 % i == 0 && n2 %  i == 0)
-                                                       {
+        if (n1 % i == 0 && n2 % i == 0)
+        {
             maxi = i;
+            break;
         }
     }
 
