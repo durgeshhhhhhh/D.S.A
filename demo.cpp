@@ -3,12 +3,11 @@ using namespace std;
 
 void print(int i, int n)
 {
-    if (i > n)
+    if (i < 1)
         return;
 
+    print(i - 1, n);
     cout << i << endl;
-
-    print(i + 1, n);
 }
 
 int main()
@@ -16,5 +15,5 @@ int main()
     int n;
     cin >> n;
 
-    print(1, n);
+    print(n, n);
 }
