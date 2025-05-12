@@ -1,15 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void sum(int i, int j)
+int fact(int n)
 {
-    if (i < 1)
-    {
-        cout << j;
-        return;
-    }
+    if (n == 1)
+        return 1;
 
-    sum(i - 1, j + i);
+    return n * fact(n - 1);
 }
 
 int main()
@@ -17,5 +14,8 @@ int main()
     int n;
     cin >> n;
 
-    sum(n, 0);
+    int factorial = fact(n);
+    cout << factorial;
+
+    return 0;
 }
