@@ -3,27 +3,22 @@ using namespace std;
 
 int main()
 {
-    int n;
-    cin >> n;
-    int cnt = 0;
+    int n1;
+    cin >> n1;
+    int n2;
+    cin >> n2;
+    int maxi = 0;
 
-    for (int i = 1; i <= sqrt(n); i++)
+    for (int i = 1; i <= min(n1, n2); i++)
     {
 
-        if (n % i == 0)
-        {
-            cnt++;
-            if (n / i != i)
-            {
-                cnt++;
-            }
+        if (n1 % i == 0 && n2 %  i == 0)
+                                                       {
+            maxi = i;
         }
     }
 
-    if (cnt == 2)
-        cout << "PRIME NUMBER";
-    else
-        cout << "NOT PRIME NUMBER";
+    cout << maxi;
 
     return 0;
 }
