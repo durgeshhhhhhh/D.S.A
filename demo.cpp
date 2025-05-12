@@ -5,18 +5,25 @@ int main()
 {
     int n;
     cin >> n;
+    int cnt = 0;
 
     for (int i = 1; i <= sqrt(n); i++)
     {
+
         if (n % i == 0)
         {
-            cout << i << endl;
+            cnt++;
             if (n / i != i)
             {
-                cout << n / i << endl;
+                cnt++;
             }
         }
     }
+
+    if (cnt == 2)
+        cout << "PRIME NUMBER";
+    else
+        cout << "NOT PRIME NUMBER";
 
     return 0;
 }
