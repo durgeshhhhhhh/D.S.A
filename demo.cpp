@@ -1,13 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print(int i, int n)
+void sum(int i, int j)
 {
     if (i < 1)
+    {
+        cout << j;
         return;
+    }
 
-    print(i - 1, n);
-    cout << i << endl;
+    sum(i - 1, j + i);
 }
 
 int main()
@@ -15,5 +17,5 @@ int main()
     int n;
     cin >> n;
 
-    print(n, n);
+    sum(n, 0);
 }
