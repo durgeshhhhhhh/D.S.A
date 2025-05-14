@@ -1,21 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int checkPallindrome(int i, string &s)
+int fibonacci(int n)
 {
+    if (n <= 1)
+        return n;
 
-    if (i > s.size() / 2)
-        return true;
+    int lDigit = fibonacci(n - 1);
+    int slDigit = fibonacci(n - 2);
 
-    if (s[i] != s[s.size() - i - 1])
-        return false;
-
-    return checkPallindrome(i + 1, s);
+    return lDigit + slDigit;
 }
 
 int main()
 {
-    string s = "madam";
 
-    cout << checkPallindrome(0, s);
+    int n;
+    cin >> n;
+
+    cout << fibonacci(n);
 }
