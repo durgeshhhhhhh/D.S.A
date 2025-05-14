@@ -1,33 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void reverse(int arr[], int i, int j)
+int checkPallindrome(int i, string &s)
 {
 
-    if (i > j)
-        return;
+    if (i > s.size() / 2)
+        return true;
 
-    swap(arr[i], arr[j]);
+    if (s[i] != s[s.size() - i - 1])
+        return false;
 
-    reverse(arr, i + 1, j - 1);
+    return checkPallindrome(i + 1, s);
 }
 
 int main()
 {
-    int n;
-    cin >> n;
+    string s = "madam";
 
-    int arr[n];
-
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
-
-    reverse(arr, 0, n - 1);
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
+    cout << checkPallindrome(0, s);
 }
