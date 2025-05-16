@@ -3,25 +3,34 @@ using namespace std;
 
 int main()
 {
-    string s;
-    cin >> s;
+    int n;
+    cin >> n;
+    int arr[n];
 
-    int hash[256] = {0};
-    for (int i = 0; i < s.size(); i++)
+    for (int i = 0; i < n; i++)
     {
-        hash[s[i]] += 1;
+        cin >> arr[i];
     }
+
+    unordered_map<int, int> mpp;    
+    for (int i = 0; i < n; i++)
+    {
+        mpp[arr[i]] += 1;
+    }
+
+    for (auto it : mpp)
+    {
+        cout << it.first << "-->" << it.second << endl;
+    }                   
 
     int q;
     cin >> q;
 
     while (q--)
     {
-        char ch;
-        cin >> ch;
+        int number;
+        cin >> number;
 
-        cout << hash[ch] << endl;
+        cout << mpp[number] << endl;
     }
-
-    return 0;
 }
