@@ -3,29 +3,24 @@ using namespace std;
 
 int main()
 {
-    int n;
-    cin >> n;
-    int arr[n];
+    string s;
+    cin >> s;
 
-    for (int i = 0; i < n; i++)
+    int hash[256] = {0};
+    for (int i = 0; i < s.size(); i++)
     {
-        cin >> arr[i];
-    }
-
-    int hash[13] = {0};
-    for (int i = 0; i < n; i++)
-    {
-        hash[arr[i]] += 1;
+        hash[s[i]] += 1;
     }
 
     int q;
     cin >> q;
+
     while (q--)
     {
-        int number;
-        cin >> number;
+        char ch;
+        cin >> ch;
 
-        cout << hash[number] << endl;
+        cout << hash[ch] << endl;
     }
 
     return 0;
