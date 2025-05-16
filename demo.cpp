@@ -3,28 +3,39 @@ using namespace std;
 
 int main()
 {
-    string s;
-    cin >> s;
+    int n;
+    cin >> n;
+    int arr[n];
+    map<int, int> mpp;
 
-    map<char, int> mpp;
-    for (int i = 0; i < s.size(); i++)
+    for (int i = 0; i < n; i++)
     {
-        mpp[s[i]] += 1;
+        cin >> arr[i];
+        mpp[arr[i]] += 1;
+    }
+
+    int minn = INT_MAX;
+    for (auto it : mpp)
+    {
+        if (it.second < minn)
+            minn = it.second;
     }
 
     for (auto it : mpp)
     {
-        cout << it.first << " --> " << it.second << endl;
+        if (it.second == minn)
+            cout << it.first << " -----> " << it.second << endl;
     }
 
     int q;
     cin >> q;
-
     while (q--)
     {
-        char ch;
-        cin >> ch;
+        int number;
+        cin >> number;
 
-        cout << mpp[ch] << endl;
+        cout << mpp[number] << endl;
     }
+
+    return 0;
 }
