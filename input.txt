@@ -1,8 +1,7 @@
-7
-1 2 3 1 3 2 12
+abcgdqwggediasgcugvsdjfhgaqhfg
 5
-12
-4
-3
-2
-1
+a
+b
+c
+d
+e

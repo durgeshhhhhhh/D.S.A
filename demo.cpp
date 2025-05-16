@@ -3,34 +3,28 @@ using namespace std;
 
 int main()
 {
-    int n;
-    cin >> n;
-    int arr[n];
+    string s;
+    cin >> s;
 
-    for (int i = 0; i < n; i++)
+    map<char, int> mpp;
+    for (int i = 0; i < s.size(); i++)
     {
-        cin >> arr[i];
-    }
-
-    unordered_map<int, int> mpp;    
-    for (int i = 0; i < n; i++)
-    {
-        mpp[arr[i]] += 1;
+        mpp[s[i]] += 1;
     }
 
     for (auto it : mpp)
     {
-        cout << it.first << "-->" << it.second << endl;
-    }                   
+        cout << it.first << " --> " << it.second << endl;
+    }
 
     int q;
     cin >> q;
 
     while (q--)
     {
-        int number;
-        cin >> number;
+        char ch;
+        cin >> ch;
 
-        cout << mpp[number] << endl;
+        cout << mpp[ch] << endl;
     }
 }
