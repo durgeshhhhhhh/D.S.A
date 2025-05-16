@@ -14,16 +14,16 @@ int main()
         mpp[arr[i]] += 1;
     }
 
-    int minn = INT_MAX;
+    int maxx = 0;
     for (auto it : mpp)
     {
-        if (it.second < minn)
-            minn = it.second;
+        if (it.second > maxx)
+            maxx = it.second;
     }
 
     for (auto it : mpp)
     {
-        if (it.second == minn)
+        if (it.second == maxx)
             cout << it.first << " -----> " << it.second << endl;
     }
 
