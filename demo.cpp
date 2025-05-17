@@ -1,41 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void selection_sort(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        int mini = i;
+        for (int j = i; j <= n - 1; j++)
+        {
+            if (arr[j] < arr[mini])
+                mini = j;
+        }
+
+        int temp = arr[i];
+        arr[i] = arr[mini];
+        arr[mini] = temp;
+    }
+}
+
 int main()
 {
     int n;
     cin >> n;
     int arr[n];
-    map<int, int> mpp;
 
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
-        mpp[arr[i]] += 1;
     }
 
-    int maxx = 0;
-    for (auto it : mpp)
+    selection_sort(arr, n);
+
+    cout << "[ ";
+    for (int i = 0; i < n; i++)
     {
-        if (it.second > maxx)
-            maxx = it.second;
+        cout << arr[i] << ",";
     }
-
-    for (auto it : mpp)
-    {
-        if (it.second == maxx)
-            cout << it.first << " -----> " << it.second << endl;
-    }
-
-    int q;
-    cin >> q;
-    while (q--)
-    {
-        int number;
-        cin >> number;
-
-        cout << mpp[number] << endl;
-    }
+    cout << " ]";
 
     return 0;
 }
