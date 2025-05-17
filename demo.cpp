@@ -1,26 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void bubble_sort(int arr[], int n)
+void insertion_sort(int arr[], int n)
 {
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n; i++)
     {
-        bool is_swapped = false;
-        for (int j = 0; j < n - i - 1; j++)
+        int j = i;
+
+        while (j > 0 && arr[j] < arr[j - 1])
         {
-            if (arr[j] > arr[j + 1])
-            {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                is_swapped = true;
-            }
+            swap(arr[j], arr[j - 1]);
+            j--;
         }
-
-        if (!is_swapped)
-            break;
-
-        cout << "runs" << endl;
     }
 }
 
@@ -35,7 +26,7 @@ int main()
         cin >> arr[i];
     }
 
-    bubble_sort(arr, n);
+    insertion_sort(arr, n);
 
     for (int i = 0; i < n; i++)
     {
