@@ -1,24 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int secondLargest(int arr[], int n)
+int sLargest(int arr[], int n)
 {
-    int maxx = arr[0];
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] > maxx)
-            maxx = arr[i];
-    }
-
-    int secondLargest = -1;
+    int largest = arr[0];
+    int sLargest = -1;
 
     for (int i = 0; i < n; i++)
     {
-        if (arr[i] > secondLargest && arr[i] != maxx)
-            secondLargest = arr[i];
+        if (arr[i] > largest)
+        {
+            sLargest = largest;
+            largest = arr[i];
+        }
+        else if (arr[i] < largest && arr[i] > sLargest)
+            sLargest = arr[i];
     }
 
-    return secondLargest;
+    return sLargest;
 }
 
 int main()
@@ -32,5 +31,5 @@ int main()
         cin >> arr[i];
     }
 
-    cout << secondLargest(arr, n);
+    cout << sLargest(arr, n);
 }
