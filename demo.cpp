@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int largest(int arr[], int n)
+int secondLargest(int arr[], int n)
 {
     int maxx = arr[0];
     for (int i = 0; i < n; i++)
@@ -9,8 +9,16 @@ int largest(int arr[], int n)
         if (arr[i] > maxx)
             maxx = arr[i];
     }
-                
-    return maxx;
+
+    int secondLargest = -1;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] > secondLargest && arr[i] != maxx)
+            secondLargest = arr[i];
+    }
+
+    return secondLargest;
 }
 
 int main()
@@ -24,5 +32,5 @@ int main()
         cin >> arr[i];
     }
 
-    cout << largest(arr, n);
+    cout << secondLargest(arr, n);
 }
