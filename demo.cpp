@@ -1,23 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int secondSmallest(vector<int> &arr, int n)
+string arraySorted(vector<int> &arr, int n)
 {
-    int smallest = arr[0];
-    int secondSmallest = INT_MAX;
-
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < n; i++)
     {
-        if (arr[i] < smallest)
+        if (arr[i] >= arr[i - 1])
         {
-            secondSmallest = smallest;
-            smallest = arr[i];
         }
-        else if (arr[i] != smallest && arr[i] < secondSmallest)
-            secondSmallest = arr[i];
+        else
+            return "Array is not sorted";
     }
 
-    return secondSmallest;
+    return "Array is sorted";
 }
 
 int main()
@@ -31,5 +26,5 @@ int main()
         cin >> arr[i];
     }
 
-    cout << secondSmallest(arr, n);
+    cout << arraySorted(arr, n);
 }
