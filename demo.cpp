@@ -1,35 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int sLargest(int arr[], int n)
+int secondSmallest(vector<int> &arr, int n)
 {
-    int largest = arr[0];
-    int sLargest = -1;
+    int smallest = arr[0];
+    int secondSmallest = INT_MAX;
 
     for (int i = 0; i < n; i++)
     {
-        if (arr[i] > largest)
+        if (arr[i] < smallest)
         {
-            sLargest = largest;
-            largest = arr[i];
+            secondSmallest = smallest;
+            smallest = arr[i];
         }
-        else if (arr[i] < largest && arr[i] > sLargest)
-            sLargest = arr[i];
+        else if (arr[i] != smallest && arr[i] < secondSmallest)
+            secondSmallest = arr[i];
     }
 
-    return sLargest;
+    return secondSmallest;
 }
 
 int main()
 {
     int n;
     cin >> n;
-    int arr[n];
+    vector<int> arr(n);
 
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
     }
 
-    cout << sLargest(arr, n);
+    cout << secondSmallest(arr, n);
 }
