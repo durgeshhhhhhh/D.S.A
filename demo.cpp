@@ -1,32 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void duplicate(vector<int> &arr, int n)
+int duplicate(vector<int> &arr, int n)
 {
-    set<int> st;
-
-    for (int i = 0; i < n; i++)
+    int i = 0;
+    for (int j = 1; j < n; j++)
     {
-        st.insert(arr[i]);
+        if (arr[j] != arr[i])
+        {
+            arr[i + 1] = arr[j];
+            i++;
+        }
     }
-
-    cout << "::::: Array Without Duplicates :::::" << endl;
-    cout << "             ";
-    cout << "[ ";
-    int index = 0;
-    for (auto it : st)
-    {
-        cout << it << " ";
-        index++;
-    }
-    cout << "]";
-
-    cout << endl
-         << endl
-         << endl
-         << endl;
-
-    cout << "Array size after removing duplicates: " << index << endl;
+    return i + 1;
 }
 
 int main()
@@ -40,7 +26,15 @@ int main()
         cin >> arr[i];
     }
 
-    duplicate(arr, n);
+    int result = duplicate(arr, n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    cout << endl;
+    cout << "number of unique elements: " << result;
 
     return 0;
 }
