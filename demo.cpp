@@ -1,7 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+<<<<<<< HEAD
 void rotateArray(vector<int> &arr, int n)
+=======
+void rotateArray(vector<int> &arr, int n, int k)
+>>>>>>> 3f0f63ce14827f13e67acada63ca74c513bae4f2
 {
     int temp = arr[0];
 
@@ -24,7 +28,14 @@ int main()
         cin >> arr[i];
     }
 
+<<<<<<< HEAD
     rotateArray(arr, n);
+=======
+    int k;
+    cin >> k;
+
+    rotateArray(arr, n, k);
+>>>>>>> 3f0f63ce14827f13e67acada63ca74c513bae4f2
 
     for (int i = 0; i < n; i++)
     {
