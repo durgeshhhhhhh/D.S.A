@@ -1,18 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string arraySorted(vector<int> &arr, int n)
+void duplicate(vector<int> &arr, int n)
 {
-    for (int i = 1; i < n; i++)
+    set<int> st;
+
+    for (int i = 0; i < n; i++)
     {
-        if (arr[i] >= arr[i - 1])
-        {
-        }
-        else
-            return "Array is not sorted";
+        st.insert(arr[i]);
     }
 
-    return "Array is sorted";
+    cout << "::::: Array Without Duplicates :::::" << endl;
+    cout << "             ";
+    cout << "[ ";
+    int index = 0;
+    for (auto it : st)
+    {
+        cout << it << " ";
+        index++;
+    }
+    cout << "]";
+
+    cout << endl
+         << endl
+         << endl
+         << endl;
+
+    cout << "Array size after removing duplicates: " << index << endl;
 }
 
 int main()
@@ -26,5 +40,7 @@ int main()
         cin >> arr[i];
     }
 
-    cout << arraySorted(arr, n);
+    duplicate(arr, n);
+
+    return 0;
 }

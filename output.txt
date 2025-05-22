@@ -1,1 +1,6 @@
-Array is sorted
+::::: Array Without Duplicates :::::
+             [ 1 2 3 ]
+
+
+
+Array size after removing duplicates: 3
