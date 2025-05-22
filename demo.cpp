@@ -1,18 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int duplicate(vector<int> &arr, int n)
+void rotateArray(vector<int> &arr, int n)
 {
-    int i = 0;
+    int temp = arr[0];
+
     for (int j = 1; j < n; j++)
     {
-        if (arr[j] != arr[i])
-        {
-            arr[i + 1] = arr[j];
-            i++;
-        }
+        arr[j - 1] = arr[j];
     }
-    return i + 1;
+
+    arr[n - 1] = temp;
 }
 
 int main()
@@ -26,15 +24,10 @@ int main()
         cin >> arr[i];
     }
 
-    int result = duplicate(arr, n);
+    rotateArray(arr, n);
 
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
-
-    cout << endl;
-    cout << "number of unique elements: " << result;
-
-    return 0;
 }
