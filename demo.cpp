@@ -1,20 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-<<<<<<< HEAD
-void rotateArray(vector<int> &arr, int n)
-=======
 void rotateArray(vector<int> &arr, int n, int k)
->>>>>>> 3f0f63ce14827f13e67acada63ca74c513bae4f2
 {
-    int temp = arr[0];
+    k = k % n;
 
-    for (int j = 1; j < n; j++)
+    vector<int> temp;
+    for (int i = 0; i < k; i++)
     {
-        arr[j - 1] = arr[j];
+        temp.push_back(arr[i]);
     }
 
-    arr[n - 1] = temp;
+    for (int i = k; i < n; i++)
+    {
+        arr[i - k] = arr[i];
+    }
+
+    for (int i = n - k; i < n; i++)
+    {
+        arr[i] = temp[i - (n - k)];
+    }
 }
 
 int main()
@@ -28,17 +33,15 @@ int main()
         cin >> arr[i];
     }
 
-<<<<<<< HEAD
-    rotateArray(arr, n);
-=======
     int k;
     cin >> k;
 
     rotateArray(arr, n, k);
->>>>>>> 3f0f63ce14827f13e67acada63ca74c513bae4f2
 
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
+
+    return 0;
 }
