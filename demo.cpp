@@ -1,17 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void leftRotate(vector<int> &arr, int n, int k)
+void reverse(vector<int> &arr, int start, int end)
 {
-    reverse(arr.begin(), arr.begin() + k);
-    reverse(arr.begin() + k, arr.end());
-    reverse(arr.begin(), arr.end());
+    while (start <= end)
+    {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+void rotateArray(vector<int> &arr, int n, int k)
+{
+    k = k % n;
+
+    reverse(arr, 0, k - 1);
+
+    reverse(arr, k, n - 1);
+
+    reverse(arr, 0, n - 1);
 }
 
 int main()
 {
     int n;
     cin >> n;
+
     vector<int> arr(n);
 
     for (int i = 0; i < n; i++)
@@ -22,7 +39,7 @@ int main()
     int k;
     cin >> k;
 
-    leftRotate(arr, n, k);
+    rotateArray(arr, n, k);
 
     for (int i = 0; i < n; i++)
     {
