@@ -13,13 +13,13 @@ void reverse(vector<int> &arr, int start, int end)
     }
 }
 
-void rotateArray(vector<int> &arr, int n, int k)
+void arrayRotate(vector<int> &arr, int n, int k)
 {
-    k = k % n;
+    k = k % 10;
 
-    reverse(arr, 0, k - 1);
+    reverse(arr, 0, n - k - 1);
 
-    reverse(arr, k, n - 1);
+    reverse(arr, n - k, n - 1);
 
     reverse(arr, 0, n - 1);
 }
@@ -39,12 +39,10 @@ int main()
     int k;
     cin >> k;
 
-    rotateArray(arr, n, k);
+    arrayRotate(arr, n, k);
 
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
-
-    return 0;
 }
