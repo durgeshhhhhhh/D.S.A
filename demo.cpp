@@ -1,27 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void zeroesAtEnd(vector<int> &arr, int n)
+void moveZeroes(vector<int> &arr, int n)
 {
-    vector<int> temp;
-
+    int j;
     for (int i = 0; i < n; i++)
     {
-        if (arr[i] != 0)
+        if (arr[i] == 0)
         {
-            temp.push_back(arr[i]);
+            j = i;
+            break;
         }
     }
 
-    for (int i = 0; i < n; i++)
+    for (int i = j + 1; i < n; i++)
     {
-        if (i < temp.size())
+        if (arr[i] != arr[j])
         {
-            arr[i] = temp[i];
-        }
-        else
-        {
-            arr[i] = 0;
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;                                              
+            j++;
         }
     }
 }
@@ -38,10 +37,12 @@ int main()
         cin >> arr[i];
     }
 
-    zeroesAtEnd(arr, n);
+    moveZeroes(arr, n);
 
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
+
+    return 0;
 }
