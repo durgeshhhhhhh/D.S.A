@@ -1,25 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void rotateArray(vector<int> &arr, int n, int k)
+void zeroesAtEnd(vector<int> &arr, int n)
 {
-    k = k % n;
-
     vector<int> temp;
 
-    for (int i = n - k; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        temp.push_back(arr[i]);
+        if (arr[i] != 0)
+        {
+            temp.push_back(arr[i]);
+        }
     }
 
-    for (int i = n - 1; i >= k; i--)
+    for (int i = 0; i < n; i++)
     {
-        arr[i] = arr[i - k];
-    }
-
-    for (int i = 0; i < k; i++)
-    {
-        arr[i] = temp[i];
+        if (i < temp.size())
+        {
+            arr[i] = temp[i];
+        }
+        else
+        {
+            arr[i] = 0;
+        }
     }
 }
 
@@ -35,10 +38,7 @@ int main()
         cin >> arr[i];
     }
 
-    int k;
-    cin >> k;
-
-    rotateArray(arr, n, k);
+    zeroesAtEnd(arr, n);
 
     for (int i = 0; i < n; i++)
     {
