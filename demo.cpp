@@ -3,11 +3,11 @@ using namespace std;
 
 int linearSearch(vector<int> &arr, int n, int q)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = arr.size() - 1; i >= 0; i--)
     {
         if (arr[i] == q)
         {
-            return i;
+            return arr.size() - 1 - i;
         }
     }
 
