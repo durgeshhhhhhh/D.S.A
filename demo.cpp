@@ -3,28 +3,51 @@ using namespace std;
 
 void findUnion(vector<int> &arr1, vector<int> &arr2, int n, int m)
 {
-    set<int> st;
+    int i = 0;
+    int j = 0;
+    vector<int> unionArr;
 
-    for (int i = 0; i < n; i++)
+    while (i < n && j < m)
     {
-        st.insert(arr1[i]);
+        if (arr1[i] <= arr2[j])
+        {
+            if (unionArr.size() == 0 || unionArr.back() != arr1[i])
+            {
+                unionArr.push_back(arr1[i]);
+            }
+            i++;
+        }
+        else
+        {
+            if (unionArr.size() == 0 || unionArr.back() != arr2[j])
+            {
+                unionArr.push_back(arr2[j]);
+            }
+            j++;
+        }
     }
 
-    for (int i = 0; i < n; i++)
+    while (i < n)
     {
-        st.insert(arr2[i]);
+        if (unionArr.size() == 0 || unionArr.back() != arr1[i])
+        {
+            unionArr.push_back(arr1[i]);
+        }
+        i++;
     }
 
-    vector<int> temp;
-
-    for (auto it : st)
+    while (j < m)
     {
-        temp.push_back(it);
+        if (unionArr.size() == 0 || unionArr.back() != arr2[j])
+        {
+            unionArr.push_back(arr2[j]);
+        }
+        j++;
     }
 
-    for (int i = 0; i < temp.size(); i++)
+    for (int i = 0; i < unionArr.size(); i++)
     {
-        cout << temp[i] << " ";
+        cout << unionArr[i] << " ";
     }
 }
 
