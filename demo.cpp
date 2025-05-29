@@ -4,21 +4,25 @@ using namespace std;
 void intersection(vector<int> &arr1, vector<int> &arr2, int n, int m)
 {
     vector<int> temp;
-    int visitor[m] = {0};
 
-    for (int i = 0; i < n; i++)
+    int i = 0;
+    int j = 0;
+
+    while (i < n && j < m)
     {
-        for (int j = 0; j < m; j++)
+        if (arr1[i] < arr2[j])
         {
-            if (arr1[i] == arr2[j] && visitor[j] == 0)
-            {
-                temp.push_back(arr1[i]);
-                visitor[j] = 1;
-                break;
-            }
-
-            if (arr2[j] > arr1[i])
-                break;
+            i++;
+        }
+        else if (arr2[j] < arr1[i])
+        {
+            j++;
+        }
+        else
+        {
+            temp.push_back(arr1[i]);
+            i++;
+            j++;
         }
     }
 
@@ -43,7 +47,7 @@ int main()
     cin >> m;
     vector<int> arr2(m);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
         cin >> arr2[i];
     }
