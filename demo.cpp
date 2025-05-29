@@ -1,53 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void findUnion(vector<int> &arr1, vector<int> &arr2, int n, int m)
+void intersection(vector<int> &arr1, vector<int> &arr2, int n, int m)
 {
-    int i = 0;
-    int j = 0;
-    vector<int> unionArr;
+    vector<int> temp;
+    int visitor[m] = {0};
 
-    while (i < n && j < m)
+    for (int i = 0; i < n; i++)
     {
-        if (arr1[i] <= arr2[j])
+        for (int j = 0; j < m; j++)
         {
-            if (unionArr.size() == 0 || unionArr.back() != arr1[i])
+            if (arr1[i] == arr2[j] && visitor[j] == 0)
             {
-                unionArr.push_back(arr1[i]);
+                temp.push_back(arr1[i]);
+                visitor[j] = 1;
+                break;
             }
-            i++;
-        }
-        else
-        {
-            if (unionArr.size() == 0 || unionArr.back() != arr2[j])
-            {
-                unionArr.push_back(arr2[j]);
-            }
-            j++;
+
+            if (arr2[j] > arr1[i])
+                break;
         }
     }
 
-    while (i < n)
+    for (int i = 0; i < temp.size(); i++)
     {
-        if (unionArr.size() == 0 || unionArr.back() != arr1[i])
-        {
-            unionArr.push_back(arr1[i]);
-        }
-        i++;
-    }
-
-    while (j < m)
-    {
-        if (unionArr.size() == 0 || unionArr.back() != arr2[j])
-        {
-            unionArr.push_back(arr2[j]);
-        }
-        j++;
-    }
-
-    for (int i = 0; i < unionArr.size(); i++)
-    {
-        cout << unionArr[i] << " ";
+        cout << temp[i] << " ";
     }
 }
 
@@ -71,7 +48,7 @@ int main()
         cin >> arr2[i];
     }
 
-    findUnion(arr1, arr2, n, m);
+    intersection(arr1, arr2, n, m);
 
     return 0;
 }
