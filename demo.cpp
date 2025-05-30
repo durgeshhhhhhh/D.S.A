@@ -3,20 +3,19 @@ using namespace std;
 
 int missingNumber(vector<int> &arr, int n)
 {
+    vector<int> hash(n + 1, 0);
+
+    for (int i = 0; i < n-1; i++)
+    {
+        hash[arr[i]]++;
+    }
+
     for (int i = 1; i <= n; i++)
     {
-        bool flag = true;
-        for (int j = 0; j < n - 1; j++)
+        if (hash[i] == 0)
         {
-            if (arr[j] == i)
-            {
-                flag = false;
-                break;
-            }
-        }
-
-        if (flag)
             return i;
+        }
     }
 }
 
