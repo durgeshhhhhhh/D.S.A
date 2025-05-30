@@ -3,17 +3,13 @@ using namespace std;
 
 int singleNumber(vector<int> &arr, int n)
 {
-    unordered_map<int, int> mpp;
-
+    int xorr = 0;
     for (int i = 0; i < n; i++)
     {
-        mpp[arr[i]]++;
+        xorr = xorr ^ arr[i];
     }
 
-    for (auto it : mpp)
-    {
-        if(it.second == 1) return it.first;
-    }
+    return xorr;
 }
 
 int main()
