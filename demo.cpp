@@ -1,11 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int singleNumber(vector<int> &arr, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        int cnt = 0;
+        for (int j = 0; j < n; j++)
+        {
+            if (arr[j] == arr[i])
+            {
+                cnt++;
+            }
+        }
+
+        if (cnt == 1)
+            return arr[i];
+    }
+}
+
 int main()
 {
     int n;
     cin >> n;
-
     vector<int> arr(n);
 
     for (int i = 0; i < n; i++)
@@ -13,23 +30,7 @@ int main()
         cin >> arr[i];
     }
 
-    int cnt = 0;
-    int maxi = 0;
-
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] == 1)
-        {
-            cnt++;
-            maxi = max(cnt, maxi);
-        }
-        else
-        {
-            cnt = 0;
-        }
-    }
-
-    cout << maxi;
+    cout << singleNumber(arr, n);
 
     return 0;
 }
