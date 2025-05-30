@@ -1,34 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void intersection(vector<int> &arr1, vector<int> &arr2, int n, int m)
+int missingNumber(vector<int> &arr, int n)
 {
-    vector<int> temp;
-
-    int i = 0;
-    int j = 0;
-
-    while (i < n && j < m)
+    for (int i = 1; i <= n; i++)
     {
-        if (arr1[i] < arr2[j])
+        bool flag = true;
+        for (int j = 0; j < n - 1; j++)
         {
-            i++;
+            if (arr[j] == i)
+            {
+                flag = false;
+                break;
+            }
         }
-        else if (arr2[j] < arr1[i])
-        {
-            j++;
-        }
-        else
-        {
-            temp.push_back(arr1[i]);
-            i++;
-            j++;
-        }
-    }
 
-    for (int i = 0; i < temp.size(); i++)
-    {
-        cout << temp[i] << " ";
+        if (flag)
+            return i;
     }
 }
 
@@ -36,23 +24,15 @@ int main()
 {
     int n;
     cin >> n;
-    vector<int> arr1(n);
+
+    vector<int> arr(n);
 
     for (int i = 0; i < n; i++)
     {
-        cin >> arr1[i];
+        cin >> arr[i];
     }
 
-    int m;
-    cin >> m;
-    vector<int> arr2(m);
-
-    for (int i = 0; i < m; i++)
-    {
-        cin >> arr2[i];
-    }
-
-    intersection(arr1, arr2, n, m);
+    cout << missingNumber(arr, n);
 
     return 0;
 }
