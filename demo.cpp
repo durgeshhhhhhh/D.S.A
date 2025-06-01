@@ -1,21 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int singleNumber(vector<int> &arr, int n)
+void longestSubarray(vector<int> &arr, int n, int k)
 {
-    int xorr = 0;
+    int len = 0;
     for (int i = 0; i < n; i++)
     {
-        xorr = xorr ^ arr[i];
+        int summation = 0;
+        for (int j = i; j < n; j++)
+        {
+            summation = summation + arr[j];
+
+            if (summation == k)
+            {
+                len = max(len, j - i + 1);
+            }
+        }
     }
 
-    return xorr;
+    cout << len;
 }
 
 int main()
 {
     int n;
     cin >> n;
+
     vector<int> arr(n);
 
     for (int i = 0; i < n; i++)
@@ -23,7 +33,8 @@ int main()
         cin >> arr[i];
     }
 
-    cout << singleNumber(arr, n);
+    int k;
+    cin >> k;
 
-    return 0;
+    longestSubarray(arr, n, k);
 }
