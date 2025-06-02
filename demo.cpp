@@ -11,13 +11,12 @@ void longestSubarray(vector<int> &arr, int n, int k)
         {
             summation = summation + arr[j];
 
-            if (summation == k)
+            if (summation == 3)
             {
                 len = max(len, j - i + 1);
             }
         }
     }
-
     cout << len;
 }
 
