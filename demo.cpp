@@ -1,23 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void longestSubarray(vector<int> &arr, int n, int k)
+void twoSum(vector<int> &arr, int n, int target)
 {
-    int len = 0;
+    int cnt = 0;
     for (int i = 0; i < n; i++)
     {
-        int summation = 0;
-        for (int j = i; j < n; j++)
+        for (int j = i + 1; j < n; j++)
         {
-            summation = summation + arr[j];
-
-            if (summation == 3)
+            if (arr[i] + arr[j] == target)
             {
-                len = max(len, j - i + 1);
+                cout << i << " , " << j << endl;
+                cnt++;
             }
         }
     }
-    cout << len;
+    if (cnt == 0)
+    {
+        cout << "-1" << endl;
+    }
 }
 
 int main()
@@ -32,8 +33,8 @@ int main()
         cin >> arr[i];
     }
 
-    int k;
-    cin >> k;
+    int target;
+    cin >> target;
 
-    longestSubarray(arr, n, k);
+    twoSum(arr, n, target);
 }
