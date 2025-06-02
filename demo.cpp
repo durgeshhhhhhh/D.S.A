@@ -1,24 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void twoSum(vector<int> &arr, int n, int target)
+vector<int> twoSum(vector<int> &arr, int n, int target)
 {
-    int cnt = 0;
+    map<int, int> mpp;
+
     for (int i = 0; i < n; i++)
     {
-        for (int j = i + 1; j < n; j++)
+        int rem = target - arr[i];
+        if (mpp.find(rem) != mpp.end())
         {
-            if (arr[i] + arr[j] == target)
-            {
-                cout << i << " , " << j << endl;
-                cnt++;
-            }
+            return {mpp[rem], i};
         }
+
+        mpp[arr[i]] = i;
     }
-    if (cnt == 0)
-    {
-        cout << "-1" << endl;
-    }
+
+    return {-1, -1};
 }
 
 int main()
@@ -36,5 +34,12 @@ int main()
     int target;
     cin >> target;
 
-    twoSum(arr, n, target);
+    vector<int> result = twoSum(arr, n, target);
+
+    if (result[0] != -1)
+    {
+        cout << "Indices: " << result[0] << " , " << result[1];
+    }
+    else
+        cout << "-1";
 }
