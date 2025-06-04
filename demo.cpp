@@ -1,41 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void sort123(vector<int> &arr, int n)
+void sort012(vector<int> &arr, int n)
 {
-    int cnt0 = 0;
-    int cnt1 = 0;
-    int cnt2 = 0;
+    int low = 0;
+    int mid = 0;
+    int high = n - 1;
 
-    for (int i = 0; i < n; i++)
+    while (mid <= high)
     {
-        if (arr[i] == 0)
+        if (arr[mid] == 0)
         {
-            cnt0++;
+            swap(arr[mid], arr[low]);
+            low++;
+            mid++;
         }
-        else if (arr[i] == 1)
+        else if (arr[mid] == 1)
+            mid++;
+        else if (arr[mid] == 2)
         {
-            cnt1++;
+            swap(arr[mid], arr[high]);
+            high--;
         }
-        else if (arr[i] == 2)
-        {
-            cnt2++;
-        }
-    }
-
-    for (int i = 0; i < cnt0; i++)
-    {
-        arr[i] = 0;
-    }
-
-    for (int i = cnt0; i < cnt0 + cnt1; i++)
-    {
-        arr[i] = 1;
-    }
-
-    for (int i = cnt0 + cnt1; i < n; i++)
-    {
-        arr[i] = 2;
     }
 }
 
@@ -51,7 +37,7 @@ int main()
         cin >> arr[i];
     }
 
-    sort123(arr, n);
+    sort012(arr, n);
 
     for (int i = 0; i < n; i++)
     {
