@@ -1,30 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string twoSum(vector<int> &arr, int n, int target)
+void sort123(vector<int> &arr, int n)
 {
-    sort(arr.begin(), arr.end());
+    int cnt0 = 0;
+    int cnt1 = 0;
+    int cnt2 = 0;
 
-    int left = 0;
-    int right = n - 1;
-
-    while (left < right)
+    for (int i = 0; i < n; i++)
     {
-        if (arr[left] + arr[right] == target)
+        if (arr[i] == 0)
         {
-            return "yes";
+            cnt0++;
         }
-        else if (arr[left] + arr[right] < target)
+        else if (arr[i] == 1)
         {
-            left++;
+            cnt1++;
         }
-        else
+        else if (arr[i] == 2)
         {
-            right--;
+            cnt2++;
         }
     }
 
-    return "NO";
+    for (int i = 0; i < cnt0; i++)
+    {
+        arr[i] = 0;
+    }
+
+    for (int i = cnt0; i < cnt0 + cnt1; i++)
+    {
+        arr[i] = 1;
+    }
+
+    for (int i = cnt0 + cnt1; i < n; i++)
+    {
+        arr[i] = 2;
+    }
 }
 
 int main()
@@ -39,8 +51,10 @@ int main()
         cin >> arr[i];
     }
 
-    int target;
-    cin >> target;
+    sort123(arr, n);
 
-    cout <<  twoSum(arr, n, target);
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
 }
