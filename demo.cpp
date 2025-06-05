@@ -1,16 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int maximumSubarraySum(vector<int> &arr, int n)
+void maximumSubarraySum(vector<int> &arr, int n)
 {
+    int start;
+    int ansStart;
+    int ansEnd;
     int i = 0;
     int maxx = INT_MIN;
     int summ = 0;
     while (i < n)
     {
+        if (summ == 0)
+        {
+            start = i;
+        }
+
         summ = summ + arr[i];
 
-        maxx = max(summ, maxx);
+        if (summ > maxx)
+        {
+            maxx = summ;
+            ansStart = start;
+            ansEnd = i;
+        }
 
         if (summ < 0)
         {
@@ -20,7 +33,9 @@ int maximumSubarraySum(vector<int> &arr, int n)
         i++;
     }
 
-    return maxx;
+    cout <<  maxx << endl;
+    cout << "Indices : " << ansStart << " , " << ansEnd;
+
 }
 
 int main()
@@ -35,7 +50,7 @@ int main()
         cin >> arr[i];
     }
 
-    cout << maximumSubarraySum(arr, n);
+    maximumSubarraySum(arr, n);
 
     return 0;
 }
