@@ -1,27 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> rearrangeArray(vector<int> &arr, int n)
+void rearrangeArray(vector<int> &arr, int n)
 {
-    vector<int> ans(n, 0);
-
-    int positiveIndx = 0;
-    int negativeIndx = 1;
+    vector<int> positive;
+    vector<int> negative;
 
     for (int i = 0; i < n; i++)
     {
-        if (arr[i] > 0)
+        if (arr[i] >= 0)
         {
-            ans[positiveIndx] = arr[i];
-            positiveIndx += 2;
+            positive.push_back(arr[i]);
         }
         else
         {
-            ans[negativeIndx] = arr[i];
-            negativeIndx += 2;
+            negative.push_back(arr[i]);
         }
     }
-    return ans;
+
+    if (positive.size() > negative.size())
+    {
+        for (int i = 0; i < negative.size(); i++)
+        {
+            arr[2 * i] = positive[i];
+            arr[2 * i + 1] = negative[i];
+        }
+
+        int index1 = negative.size() * 2;
+        for (int i = negative.size(); i < positive.size(); i++)
+        {
+            arr[index1] = positive[i];
+            index1++;
+        }
+    }
+    else
+    {
+        for (int i = 0; i < positive.size(); i++)
+        {
+            arr[2 * i] = positive[i];
+            arr[2 * i + 1] = negative[i];
+        }
+
+        int index2 = positive.size() * 2;
+        for (int i = positive.size(); i < negative.size(); i++)
+        {
+            arr[index2] = negative[i];
+            index2++;
+        }
+    }
 }
 
 int main()
@@ -36,11 +62,11 @@ int main()
         cin >> arr[i];
     }
 
-    vector<int> result = rearrangeArray(arr, n);
+    rearrangeArray(arr, n);
 
-    for (int i = 0; i < result.size(); i++)
+    for (int i = 0; i < n; i++)
     {
-        cout << result[i] << " ";
+        cout << arr[i] << " ";
     }
 
     return 0;
