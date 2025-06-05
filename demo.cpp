@@ -1,41 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void maximumSubarraySum(vector<int> &arr, int n)
+void rearrangeArray(vector<int> &arr, int n)
 {
-    int start;
-    int ansStart;
-    int ansEnd;
-    int i = 0;
-    int maxx = INT_MIN;
-    int summ = 0;
-    while (i < n)
+    vector<int> positive;
+    vector<int> negative;
+
+    for (int i = 0; i < n; i++)
     {
-        if (summ == 0)
-        {
-            start = i;
-        }
-
-        summ = summ + arr[i];
-
-        if (summ > maxx)
-        {
-            maxx = summ;
-            ansStart = start;
-            ansEnd = i;
-        }
-
-        if (summ < 0)
-        {
-            summ = 0;
-        }
-
-        i++;
+        if (arr[i] > 0)
+            positive.push_back(arr[i]);
+        else
+            negative.push_back(arr[i]);
     }
 
-    cout <<  maxx << endl;
-    cout << "Indices : " << ansStart << " , " << ansEnd;
-
+    for (int i = 0; i < n / 2; i++)
+    {
+        arr[2 * i] = positive[i];
+        arr[2 * i + 1] = negative[i];
+    }
 }
 
 int main()
@@ -50,7 +33,12 @@ int main()
         cin >> arr[i];
     }
 
-    maximumSubarraySum(arr, n);
+    rearrangeArray(arr, n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
 
     return 0;
 }
