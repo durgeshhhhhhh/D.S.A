@@ -1,24 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void rearrangeArray(vector<int> &arr, int n)
+vector<int> rearrangeArray(vector<int> &arr, int n)
 {
-    vector<int> positive;
-    vector<int> negative;
+    vector<int> ans(n, 0);
+
+    int positiveIndx = 0;
+    int negativeIndx = 1;
 
     for (int i = 0; i < n; i++)
     {
         if (arr[i] > 0)
-            positive.push_back(arr[i]);
+        {
+            ans[positiveIndx] = arr[i];
+            positiveIndx += 2;
+        }
         else
-            negative.push_back(arr[i]);
+        {
+            ans[negativeIndx] = arr[i];
+            negativeIndx += 2;
+        }
     }
-
-    for (int i = 0; i < n / 2; i++)
-    {
-        arr[2 * i] = positive[i];
-        arr[2 * i + 1] = negative[i];
-    }
+    return ans;
 }
 
 int main()
@@ -33,11 +36,11 @@ int main()
         cin >> arr[i];
     }
 
-    rearrangeArray(arr, n);
+    vector<int> result = rearrangeArray(arr, n);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < result.size(); i++)
     {
-        cout << arr[i] << " ";
+        cout << result[i] << " ";
     }
 
     return 0;
