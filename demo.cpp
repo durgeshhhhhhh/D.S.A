@@ -3,20 +3,34 @@ using namespace std;
 
 int majorityElement(vector<int> &arr, int n)
 {
-    unordered_map<int, int> mpp;
-
+    int cnt = 0;
+    int el;
     for (int i = 0; i < n; i++)
     {
-        mpp[arr[i]]++;
+        if (cnt == 0)
+        {
+            el = arr[i];
+        }
+
+        if (arr[i] == el)
+        {
+            cnt++;
+        }
+        else
+            cnt--;
     }
 
-    for (auto it : mpp)
+    int count;
+    for (int i = 0; i < n; i++)
     {
-        if (it.second > n / 2)
-            return it.first;
+        if (arr[i] == el)
+            count++;
     }
 
-    return -1;
+    if (count > n / 2)
+        return el;
+    else
+        return -1;
 }
 
 int main()
