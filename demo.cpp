@@ -3,15 +3,21 @@ using namespace std;
 
 int maximumSubarraySum(vector<int> &arr, int n)
 {
+    int i = 0;
     int maxx = INT_MIN;
-    for (int i = 0; i < n; i++)
+    int summ = 0;
+    while (i < n)
     {
-        int summation = 0;
-        for (int j = i; j < n; j++)
+        summ = summ + arr[i];
+
+        maxx = max(summ, maxx);
+
+        if (summ < 0)
         {
-            summation += arr[j];
-            maxx = max(maxx, summation);
+            summ = 0;
         }
+
+        i++;
     }
 
     return maxx;
