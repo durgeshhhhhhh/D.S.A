@@ -1,36 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int majorityElement(vector<int> &arr, int n)
+int maximumSubarraySum(vector<int> &arr, int n)
 {
-    int cnt = 0;
-    int el;
+    int maxx = INT_MIN;
     for (int i = 0; i < n; i++)
     {
-        if (cnt == 0)
-        {
-            el = arr[i];
-        }
 
-        if (arr[i] == el)
+        for (int j = i; j < n; j++)
         {
-            cnt++;
+            int summ = 0;
+            for (int k = i; k <= j; k++)
+            {
+                summ += arr[k];
+                maxx = max(maxx, summ);
+            }
         }
-        else
-            cnt--;
     }
 
-    int count;
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] == el)
-            count++;
-    }
-
-    if (count > n / 2)
-        return el;
-    else
-        return -1;
+    return maxx;
 }
 
 int main()
@@ -45,5 +33,7 @@ int main()
         cin >> arr[i];
     }
 
-    cout << majorityElement(arr, n);
+    cout << maximumSubarraySum(arr, n);
+
+    return 0;
 }
