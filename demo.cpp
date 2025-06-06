@@ -1,55 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void rearrangeArray(vector<int> &arr, int n)
+int maxProfit(vector<int> &prices, int n)
 {
-    vector<int> positive;
-    vector<int> negative;
+    int bestBuy = prices[0];
+    int maxProfit = 0;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < n; i++)
     {
-        if (arr[i] >= 0)
+        if (prices[i] > bestBuy)
         {
-            positive.push_back(arr[i]);
+            maxProfit = max(maxProfit, prices[i] - bestBuy);
         }
-        else
-        {
-            negative.push_back(arr[i]);
-        }
+
+        bestBuy = min(bestBuy, prices[i]);
     }
 
-    cout << negative.size() << endl;
-
-    if (positive.size() > negative.size())
-    {
-        for (int i = 0; i < negative.size(); i++)
-        {
-            arr[2 * i] = positive[i];
-            arr[2 * i + 1] = negative[i];
-        }
-
-        int index = negative.size() * 2;
-        for (int i = negative.size(); i < positive.size(); i++)
-        {
-            arr[index] = positive[i];
-            index++;
-        }
-    }
-    else
-    {
-        for (int i = 0; i < positive.size(); i++)
-        {
-            arr[2 * i] = positive[i];
-            arr[2 * i + 1] = negative[i];
-        }
-
-        int index = positive.size() * 2;
-        for (int i = positive.size(); i < negative.size(); i++)
-        {
-            arr[index] = negative[i];
-            index++;
-        }
-    }
+    return maxProfit;
 }
 
 int main()
@@ -57,19 +24,14 @@ int main()
     int n;
     cin >> n;
 
-    vector<int> arr(n);
+    vector<int> prices(n);
 
     for (int i = 0; i < n; i++)
     {
-        cin >> arr[i];
+        cin >> prices[i];
     }
 
-    rearrangeArray(arr, n);
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
+    cout << maxProfit(prices, n);
 
     return 0;
 }
