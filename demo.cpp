@@ -1,22 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int maxProfit(vector<int> &prices, int n)
+void nextPermutation(vector<int> &arr)
 {
-    int bestBuy = prices[0];
-    int maxProfit = 0;
-
-    for (int i = 1; i < n; i++)
-    {
-        if (prices[i] > bestBuy)
-        {
-            maxProfit = max(maxProfit, prices[i] - bestBuy);
-        }
-
-        bestBuy = min(bestBuy, prices[i]);
-    }
-
-    return maxProfit;
+    next_permutation(arr.begin(), arr.end());
 }
 
 int main()
@@ -24,14 +11,19 @@ int main()
     int n;
     cin >> n;
 
-    vector<int> prices(n);
+    vector<int> arr(n);
 
     for (int i = 0; i < n; i++)
     {
-        cin >> prices[i];
+        cin >> arr[i];
     }
 
-    cout << maxProfit(prices, n);
+    nextPermutation(arr);
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
 
     return 0;
 }
