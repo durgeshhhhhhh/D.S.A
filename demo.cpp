@@ -18,6 +18,8 @@ void rearrangeArray(vector<int> &arr, int n)
         }
     }
 
+    cout << negative.size() << endl;
+
     if (positive.size() > negative.size())
     {
         for (int i = 0; i < negative.size(); i++)
@@ -26,11 +28,11 @@ void rearrangeArray(vector<int> &arr, int n)
             arr[2 * i + 1] = negative[i];
         }
 
-        int index1 = negative.size() * 2;
+        int index = negative.size() * 2;
         for (int i = negative.size(); i < positive.size(); i++)
         {
-            arr[index1] = positive[i];
-            index1++;
+            arr[index] = positive[i];
+            index++;
         }
     }
     else
@@ -41,11 +43,11 @@ void rearrangeArray(vector<int> &arr, int n)
             arr[2 * i + 1] = negative[i];
         }
 
-        int index2 = positive.size() * 2;
+        int index = positive.size() * 2;
         for (int i = positive.size(); i < negative.size(); i++)
         {
-            arr[index2] = negative[i];
-            index2++;
+            arr[index] = negative[i];
+            index++;
         }
     }
 }
