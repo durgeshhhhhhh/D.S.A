@@ -4,23 +4,24 @@ using namespace std;
 vector<int> leaders(vector<int> &arr, int n)
 {
     vector<int> ans;
-    for (int i = 0; i < n; i++)
-    {
-        bool leader = true;
-        for (int j = i + 1; j < n; j++)
-        {
-            if (arr[j] > arr[i])
-            {
-                leader = false;
-                break;
-            }
-        }
 
-        if (leader)
+    int maxx = INT_MIN;
+
+    int i = n - 1;
+
+    while (i >= 0)
+    {
+
+        if (arr[i] > maxx)
         {
+            maxx = arr[i];
             ans.push_back(arr[i]);
         }
+
+        i--;
     }
+
+    reverse(ans.begin(), ans.end());
 
     return ans;
 }
