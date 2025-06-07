@@ -1,57 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void nextPermutation(vector<int> &arr, int n)
+vector<int> leaders(vector<int> &arr, int n)
 {
-    int index = -1;
-    for (int i = n - 2; i >= 0; i--)
+    vector<int> ans;
+    for (int i = 0; i < n; i++)
     {
-        if (arr[i] < arr[i + 1])
+        bool leader = true;
+        for (int j = i + 1; j < n; j++)
         {
-            index = i;
-            break;
-        }
-    }
-
-    if (index == -1)
-    {
-        int i = 0;
-        int j = n - 1;
-
-        while (i < j)
-        {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-            i++;
-            j--;
-        }
-    }
-    else
-    {
-        for (int i = n - 1; i > index; i--)
-        {
-            if (arr[i] > arr[index])
+            if (arr[j] > arr[i])
             {
-                int temp = arr[i];
-                arr[i] = arr[index];
-                arr[index] = temp;
+                leader = false;
                 break;
             }
         }
 
-        int i = index + 1;
-        int j = n - 1;
-
-        while (i < j)
+        if (leader)
         {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-            i++;
-            j--;
+            ans.push_back(arr[i]);
         }
     }
+
+    return ans;
 }
 
 int main()
@@ -66,10 +37,10 @@ int main()
         cin >> arr[i];
     }
 
-    nextPermutation(arr, n);
+    vector<int> result = leaders(arr, n);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < result.size(); i++)
     {
-        cout << arr[i] << " ";
+        cout << result[i] << " ";
     }
 }
