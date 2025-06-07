@@ -31,7 +31,6 @@ void nextPermutation(vector<int> &arr, int n)
     {
         for (int i = n - 1; i > index; i--)
         {
-            cout << "new new" << endl;
             if (arr[i] > arr[index])
             {
                 int temp = arr[i];
