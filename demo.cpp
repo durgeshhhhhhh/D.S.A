@@ -8,7 +8,7 @@ void nextPermutation(vector<int> &arr, int n)
     {
         if (arr[i] < arr[i + 1])
         {
-            index = i;      
+            index = i;
             break;
         }
     }
@@ -40,18 +40,16 @@ void nextPermutation(vector<int> &arr, int n)
             }
         }
 
-        for (int i = index + 1; i > n; i++)
-        {
-            int j = n - 1;
+        int i = index + 1;
+        int j = n - 1;
 
-            while (i < j)
-            {
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-                i++;
-                j--;
-            }
+        while (i < j)
+        {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
         }
     }
 }
