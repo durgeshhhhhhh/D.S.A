@@ -3,23 +3,32 @@ using namespace std;
 
 int longestConsecutives(vector<int> &arr, int n)
 {
-    sort(arr.begin(), arr.end());
+    unordered_set<int> st;
 
-    int longest = 1;
-    int currentCnt = 1;
+    if (n == 0)
+        return 0;
 
-    for (int i = 1; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
+        st.insert(arr[i]);
+    }
 
-        if (arr[i] != arr[i - 1])
+    int longest = 0;
+    for (auto it : st)
+    {
+        cout << it << endl;
+        if (st.find(it - 1) == st.end())
         {
-            if (arr[i] == arr[i - 1] + 1)
-                currentCnt++;
-            else
-                currentCnt = 1;
-        }
+            int cnt = 1;
+            int x = it;
 
-        longest = max(longest, currentCnt);
+            while (st.find(x + 1) != st.end())
+            {
+                x = x + 1;
+                cnt = cnt + 1;
+            }
+            longest = max(longest, cnt);
+        }
     }
 
     return longest;
