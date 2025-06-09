@@ -1,36 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool ls(vector<int> arr, int num)
-{
-    int n = arr.size();
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] == num)
-            return true;
-    }
-
-    return false;
-}
-
 int longestConsecutives(vector<int> &arr, int n)
 {
-    int len = 1;
-    for (int i = 0; i < n; i++)
-    {
-        int cnt = 1;
-        int x = arr[i];
+    sort(arr.begin(), arr.end());
 
-        while (ls(arr, x + 1) == true)
+    int longest = 1;
+    int currentCnt = 1;
+
+    for (int i = 1; i < n; i++)
+    {
+
+        if (arr[i] != arr[i - 1])
         {
-            x = x + 1;
-            cnt++;
+            if (arr[i] == arr[i - 1] + 1)
+                currentCnt++;
+            else
+                currentCnt = 1;
         }
 
-        len = max(len, cnt);
+        longest = max(longest, currentCnt);
     }
 
-    return len;
+    return longest;
 }
 
 int main()
