@@ -1,34 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void markRow(int arr[][4], int i, int m)
+void setZeroes(vector<vector<int>> &matrix, int n, int m)
 {
-    for (int j = 0; j < m; j++)
-    {
-        if (arr[i][j] != 0)
-            arr[i][j] = -1;
-    }
-}
+    vector<int> row(n, 0);
+    vector<int> col(m, 0);
 
-void markCol(int arr[][4], int j, int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i][j] != 0)
-            arr[i][j] = -1;
-    }
-}
-
-void setZeroes(int arr[][4], int n, int m)
-{
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
-            if (arr[i][j] == 0)
+            if (matrix[i][j] == 0)
             {
-                markRow(arr, i, m);
-                markCol(arr, j, n);
+                row[i] = 1;
+                col[j] = 1;
             }
         }
     }
@@ -37,11 +22,11 @@ void setZeroes(int arr[][4], int n, int m)
     {
         for (int j = 0; j < m; j++)
         {
-            if (arr[i][j] == -1)
+            if (row[i] || col[j])
             {
-                arr[i][j] = 0;
+                matrix[i][j] = 0;
             }
-        }
+        }   
     }
 }
 
@@ -51,23 +36,23 @@ int main()
     cin >> n;
     int m;
     cin >> m;
-    int arr[4][4];
+    vector<vector<int>> matrix(n, vector<int>(m));
 
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
-            cin >> arr[i][j];
+            cin >> matrix[i][j];
         }
     }
 
-    setZeroes(arr, n, m);
+    setZeroes(matrix, n, m);
 
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
-            cout << arr[i][j] << " ";
+            cout << matrix[i][j] << "   ";
         }
         cout << endl;
     }
