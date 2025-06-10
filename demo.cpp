@@ -1,50 +1,76 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int longestConsecutives(vector<int> &arr, int n)
+void markRow(int arr[][4], int i, int m)
 {
-    unordered_set<int> st;
+    for (int j = 0; j < m; j++)
+    {
+        if (arr[i][j] != 0)
+            arr[i][j] = -1;
+    }
+}
 
-    if (n == 0)
-        return 0;
-
+void markCol(int arr[][4], int j, int n)
+{
     for (int i = 0; i < n; i++)
     {
-        st.insert(arr[i]);
+        if (arr[i][j] != 0)
+            arr[i][j] = -1;
     }
+}
 
-    int longest = 0;
-    for (auto it : st)
+void setZeroes(int arr[][4], int n, int m)
+{
+    for (int i = 0; i < n; i++)
     {
-        cout << it << endl;
-        if (st.find(it - 1) == st.end())
+        for (int j = 0; j < m; j++)
         {
-            int cnt = 1;
-            int x = it;
-
-            while (st.find(x + 1) != st.end())
+            if (arr[i][j] == 0)
             {
-                x = x + 1;
-                cnt = cnt + 1;
+                markRow(arr, i, m);
+                markCol(arr, j, n);
             }
-            longest = max(longest, cnt);
         }
     }
 
-    return longest;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (arr[i][j] == -1)
+            {
+                arr[i][j] = 0;
+            }
+        }
+    }
 }
 
 int main()
 {
     int n;
     cin >> n;
-
-    vector<int> arr(n);
+    int m;
+    cin >> m;
+    int arr[4][4];
 
     for (int i = 0; i < n; i++)
     {
-        cin >> arr[i];
+        for (int j = 0; j < m; j++)
+        {
+            cin >> arr[i][j];
+        }
     }
 
-    cout << longestConsecutives(arr, n);
+    setZeroes(arr, n, m);
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
 }
