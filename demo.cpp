@@ -1,20 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void reverseRow(vector<int> &row, int n)
+{
+    int temp;
+    int i = 0;
+    int j = n - 1;
+
+    while (i < j)
+    {
+        temp = row[i];
+        row[i] = row[j];
+        row[j] = temp;
+        i++;
+        j--;
+    }
+}
+
 void rotateMatrix(vector<vector<int>> &matrix, int n)
 {
-
+    int temp;
     for (int i = 0; i < n - 1; i++)
     {
         for (int j = i + 1; j < n; j++)
         {
-            swap(matrix[i][j], matrix[j][i]);
+            temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
         }
     }
 
     for (int i = 0; i < n; i++)
     {
-        reverse(matrix[i].begin(), matrix[i].end());
+        reverseRow(matrix[i], n);
     }
 }
 
