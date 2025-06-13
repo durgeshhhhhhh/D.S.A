@@ -3,24 +3,27 @@ using namespace std;
 
 int longestSubarray(vector<int> &arr, int n, int k)
 {
-    unordered_map<int, int> mpp;
-    int prefixSum = 0;
+    int right = 0;
+    int left = 0;
+    int summ = 0;
     int maxLen = 0;
 
-    for (int i = 0; i < n; i++)
+    while (right < n)
     {
-        prefixSum += arr[i];
+        while (left <= right && summ > k)
+        {
+            summ -= arr[left];
+            left++;
+        }
 
-        if (prefixSum == k)
-            maxLen = max(maxLen, i + 1);
+        if (summ == k)
+        {
+            int len = right - left + 1;
+            maxLen = max(maxLen, len);
+        }
 
-        int remaining = prefixSum - k;
-
-        if (mpp.find(remaining) != mpp.end())
-            maxLen = max(maxLen, i - mpp[remaining]);
-
-        if (mpp.find(prefixSum) == mpp.end())
-            mpp[prefixSum] = i;
+        summ += arr[right];
+        right++;
     }
 
     return maxLen;
