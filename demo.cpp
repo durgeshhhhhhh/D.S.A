@@ -1,65 +1,70 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void reverseRow(vector<int> &row, int n)
+vector<int> spiralMatrix(vector<vector<int>> &matrix, int n, int m)
 {
-    int temp;
-    int i = 0;
-    int j = n - 1;
+    vector<int> ans;
+    int left = 0;
+    int top = 0;
+    int bottom = n - 1;
+    int right = n - 1;
 
-    while (i < j)
+    while (left <= right && top <= bottom)
     {
-        temp = row[i];
-        row[i] = row[j];
-        row[j] = temp;
-        i++;
-        j--;
-    }
-}
-
-void rotateMatrix(vector<vector<int>> &matrix, int n)
-{
-    int temp;
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = i + 1; j < n; j++)
+        for (int i = left; i <= right; i++)
         {
-            temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
+            ans.push_back(matrix[top][i]);
+        }
+        top++;
+
+        for (int i = top; i <= bottom; i++)
+        {
+            ans.push_back(matrix[i][right]);
+        }
+        right--;
+
+        if (top <= bottom)
+        {
+            for (int i = right; i >= left; i--)
+            {
+                ans.push_back(matrix[bottom][i]);
+            }
+            bottom--;
+        }
+
+        if (left <= right)
+        {
+            for (int i = bottom; i >= top; i--)
+            {
+                ans.push_back(matrix[i][left]);
+            }
+            left++;
         }
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        reverseRow(matrix[i], n);
-    }
+    return ans;
 }
 
 int main()
 {
-    int n;
-    cin >> n;
+    int n, m;
+    cin >> n >> m;
 
     vector<vector<int>> matrix(n, vector<int>(n));
 
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < m; j++)
         {
             cin >> matrix[i][j];
         }
     }
 
-    rotateMatrix(matrix, n);
+    vector<int> result = spiralMatrix(matrix, n, m);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < result.size(); i++)
     {
-        for (int j = 0; j < n; j++)
-        {
-            cout << matrix[i][j] << "  ";
-        }
-        cout << endl;
+        cout << result[i] << " ";
     }
 
     return 0;
