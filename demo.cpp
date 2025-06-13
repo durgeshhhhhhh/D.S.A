@@ -7,13 +7,10 @@ int countSubarray(vector<int> &arr, int n, int k)
     for (int i = 0; i < n; i++)
     {
 
+        int subarraySum = 0;
         for (int j = i; j < n; j++)
         {
-            int subarraySum = 0;
-            for (int z = i; z <= j; z++)
-            {
-                subarraySum = subarraySum + arr[z];
-            }
+            subarraySum = subarraySum + arr[j];
 
             if (subarraySum == k)
             {
