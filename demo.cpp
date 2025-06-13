@@ -1,25 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int countSubarray(vector<int> &arr, int n, int k)
+int longestSubarray(vector<int> &arr, int n, int k)
 {
-    int cnt = 0;
+    unordered_map<int, int> mpp;
+    int prefixSum = 0;
+    int maxLen = 0;
+
     for (int i = 0; i < n; i++)
     {
+        prefixSum += arr[i];
 
-        int subarraySum = 0;
-        for (int j = i; j < n; j++)
-        {
-            subarraySum = subarraySum + arr[j];
+        if (prefixSum == k)
+            maxLen = max(maxLen, i + 1);
 
-            if (subarraySum == k)
-            {
-                cnt++;
-            }
-        }
+        int remaining = prefixSum - k;
+
+        if (mpp.find(remaining) != mpp.end())
+            maxLen = max(maxLen, i - mpp[remaining]);
+
+        if (mpp.find(prefixSum) == mpp.end())
+            mpp[prefixSum] = i;
     }
 
-    return cnt;
+    return maxLen;
 }
 
 int main()
@@ -37,7 +41,7 @@ int main()
     int k;
     cin >> k;
 
-    cout << countSubarray(arr, n, k);
+    cout << longestSubarray(arr, n, k);
 
     return 0;
 }
