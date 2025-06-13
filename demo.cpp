@@ -1,71 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> spiralMatrix(vector<vector<int>> &matrix, int n, int m)
+int countSubarray(vector<int> &arr, int n, int k)
 {
-    vector<int> ans;
-    int left = 0;
-    int top = 0;
-    int bottom = n - 1;
-    int right = n - 1;
-
-    while (left <= right && top <= bottom)
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
     {
-        for (int i = left; i <= right; i++)
-        {
-            ans.push_back(matrix[top][i]);
-        }
-        top++;
 
-        for (int i = top; i <= bottom; i++)
+        for (int j = i; j < n; j++)
         {
-            ans.push_back(matrix[i][right]);
-        }
-        right--;
-
-        if (top <= bottom)
-        {
-            for (int i = right; i >= left; i--)
+            int subarraySum = 0;
+            for (int z = i; z <= j; z++)
             {
-                ans.push_back(matrix[bottom][i]);
+                subarraySum = subarraySum + arr[z];
             }
-            bottom--;
-        }
 
-        if (left <= right)
-        {
-            for (int i = bottom; i >= top; i--)
+            if (subarraySum == k)
             {
-                ans.push_back(matrix[i][left]);
+                cnt++;
             }
-            left++;
         }
     }
 
-    return ans;
+    return cnt;
 }
 
 int main()
 {
-    int n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
-    vector<vector<int>> matrix(n, vector<int>(n));
+    vector<int> arr(n);
 
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < m; j++)
-        {
-            cin >> matrix[i][j];
-        }
+        cin >> arr[i];
     }
 
-    vector<int> result = spiralMatrix(matrix, n, m);
+    int k;
+    cin >> k;
 
-    for (int i = 0; i < result.size(); i++)
-    {
-        cout << result[i] << " ";
-    }
+    cout << countSubarray(arr, n, k);
 
     return 0;
 }
