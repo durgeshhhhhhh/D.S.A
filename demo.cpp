@@ -1,26 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int countSubarray(vector<int> &arr, int n, int k)
+vector<int> majorityElement(vector<int> &arr, int n)
 {
-    map<int, int> mpp;
-
-    mpp[0] = 1;
-    int prefixSum = 0;
-    int cnt = 0;
+    unordered_map<int, int> mpp;
+    vector<int> result;
 
     for (int i = 0; i < n; i++)
     {
-        prefixSum += arr[i];
-
-        int remaining = prefixSum - k;
-
-        cnt = cnt + mpp[remaining];
-
-        mpp[prefixSum]++;
+        mpp[arr[i]]++;
     }
 
-    return cnt;
+    for (auto it : mpp)
+    {
+        if (it.second > n / 3)
+            result.push_back(it.first);
+    }
+
+    return result;
 }
 
 int main()
@@ -35,10 +32,12 @@ int main()
         cin >> arr[i];
     }
 
-    int k;
-    cin >> k;
+    vector<int> result = majorityElement(arr, n);
 
-    cout << countSubarray(arr, n, k);
+    for (int i = 0; i < result.size(); i++)
+    {
+        cout << result[i] << " ";
+    }
 
     return 0;
 }
