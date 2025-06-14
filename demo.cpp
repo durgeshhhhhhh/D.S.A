@@ -1,25 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-set<int> majorityElement(vector<int> &arr, int n)
+vector<int> majorityElement(vector<int> &arr, int n)
 {
-    set<int> ans;
+    vector<int> ans;
+    map<int, int> mpp;
+    int minimum = (n / 3) + 1;
 
     for (int i = 0; i < n; i++)
     {
-        int cnt = 0;
-        for (int j = 0; j < n; j++)
+        mpp[arr[i]]++;
+
+        if (mpp[arr[i]] == minimum)
         {
-            if (arr[i] == arr[j])
-            {
-                cnt++;
-            }
-        }
-        if (cnt > n / 3)
-        {
-            ans.insert(arr[i]);
+            ans.push_back(arr[i]);
         }
     }
+
     return ans;
 }
 
@@ -35,11 +32,11 @@ int main()
         cin >> arr[i];
     }
 
-    set<int> result = majorityElement(arr, n);
+    vector<int> result = majorityElement(arr, n);
 
-    for (auto it : result)
+    for (int i = 0; i < result.size(); i++)
     {
-        cout << it << " ";
+        cout << result[i] << " ";
     }
 
     return 0;
