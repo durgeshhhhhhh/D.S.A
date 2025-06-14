@@ -1,23 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> majorityElement(vector<int> &arr, int n)
+set<int> majorityElement(vector<int> &arr, int n)
 {
-    unordered_map<int, int> mpp;
-    vector<int> result;
+    set<int> ans;
 
     for (int i = 0; i < n; i++)
     {
-        mpp[arr[i]]++;
+        int cnt = 0;
+        for (int j = 0; j < n; j++)
+        {
+            if (arr[i] == arr[j])
+            {
+                cnt++;
+            }
+        }
+        if (cnt > n / 3)
+        {
+            ans.insert(arr[i]);
+        }
     }
-
-    for (auto it : mpp)
-    {
-        if (it.second > n / 3)
-            result.push_back(it.first);
-    }
-
-    return result;
+    return ans;
 }
 
 int main()
@@ -32,11 +35,11 @@ int main()
         cin >> arr[i];
     }
 
-    vector<int> result = majorityElement(arr, n);
+    set<int> result = majorityElement(arr, n);
 
-    for (int i = 0; i < result.size(); i++)
+    for (auto it : result)
     {
-        cout << result[i] << " ";
+        cout << it << " ";
     }
 
     return 0;
