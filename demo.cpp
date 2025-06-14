@@ -45,7 +45,7 @@ vector<int> majorityElement(vector<int> &arr, int n)
 
     if (cnt1 > n / 3)
         ans.push_back(el1);
-    if (cnt2 > n / 3)
+    if (cnt2 > n / 3 && el2 != el1)
         ans.push_back(el2);
 
     return ans;
