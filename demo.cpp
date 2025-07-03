@@ -3,23 +3,42 @@ using namespace std;
 
 vector<vector<int>> threeSum(int n, vector<int> &arr)
 {
-    set<vector<int>> st;
+    sort(arr.begin(), arr.end());
+    vector<vector<int>> ans;
+
     for (int i = 0; i < n; i++)
     {
-        set<int> hashset;
-        for (int j = i + 1; j < n; j++)
+        while (i > 0 && arr[i] == arr[i - 1])
+            continue;
+
+        int j = i + 1;
+        int k = n - 1;
+
+        while (j < k)
         {
-            int third = -(arr[i] + arr[j]);
-            if (hashset.find(third) != hashset.end())
+            int sum = arr[i] + arr[j] + arr[k];
+
+            if (sum < 0)
             {
-                vector<int>temp = {arr[i], arr[j], third};
-                sort(temp.begin(), temp.end());
-                st.insert(temp);
+                j++;
             }
-            hashset.insert(arr[j]);
+            else if (sum > 0)
+            {
+                k--;
+            }
+            else
+            {
+                vector<int> temp = {arr[i], arr[j], arr[k]};
+                ans.push_back(temp);
+                j++;
+                k--;
+                while (j < k && arr[j] == arr[j - 1])
+                    j++;
+                while (j < k && arr[k] == arr[k + 1])
+                    k--;
+            }
         }
     }
-    vector<vector<int>> ans(st.begin(), st.end());
     return ans;
 }
 
