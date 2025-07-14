@@ -1,20 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int bs(vector<int> &arr, int target)
+{
+    int n = arr.size();
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == target)
+            return mid;
+        else if (arr[mid] < target)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+
+    return -1;
+}
+
 int main()
 {
     int n;
     cin >> n;
 
-    int rev_no = 0;
-    while (n > 0)
+    vector<int> arr(n);
+
+    for (int i = 0; i < n; i++)
     {
-        int rem = n % 10;
-        n = n / 10;
-        rev_no = rev_no * 10 + rem;
+        cin >> arr[i];
     }
 
-    cout << rev_no;
+    int target;
+    cin >> target;
 
-    return 0;
+    cout << bs(arr, target);
 }
