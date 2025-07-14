@@ -3,24 +3,10 @@ using namespace std;
 
 int main()
 {
-    int n;
-    cin >> n;
+    string s;
+    cin >> s;
 
-    int cnt = 0;
-    if (n == 0)
-    {
-        cnt = 1;
-    }
-    else
-    {
-        while (n > 0)
-        {
-            cnt++;
-            n = n / 10;
-        }
-    }
-
-    cout << cnt;
+    cout << s.length();
 
     return 0;
 }
