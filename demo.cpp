@@ -3,10 +3,18 @@ using namespace std;
 
 int main()
 {
-    string s;
-    cin >> s;
+    int n;
+    cin >> n;
 
-    cout << s.length();
+    int rev_no = 0;
+    while (n > 0)
+    {
+        int rem = n % 10;
+        n = n / 10;
+        rev_no = rev_no * 10 + rem;
+    }
+
+    cout << rev_no;
 
     return 0;
 }
