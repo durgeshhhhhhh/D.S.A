@@ -1,35 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int bs(vector<int> &arr, int low, int high, int target)
-{
-    if (low > high)
-        return -1;
-
-    int mid = (low + high) / 2;
-
-    if (arr[mid] == target)
-        return mid;
-    else if (arr[mid] > target)
-        return bs(arr, low, mid - 1, target);
-    else
-        return bs(arr, mid + 1, high, target);
-}
-
 int main()
 {
     int n;
     cin >> n;
 
-    vector<int> arr(n);
+    int original_number = n;
 
-    for (int i = 0; i < n; i++)
+    int rev_no = 0;
+
+    while (n > 0)
     {
-        cin >> arr[i];
+        int rem = n % 10;
+        rev_no = rev_no * 10 + rem;
+        n = n / 10;
     }
 
-    int target;
-    cin >> target;
+    if (rev_no == original_number)
+        cout << "true, it's a pallindronme.";
+    else
+        cout << "False, it's not a pallindrome.";
 
-    cout << bs(arr, 0, n - 1, target);
+    return 0;
 }
