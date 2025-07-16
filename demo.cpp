@@ -1,34 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int lowerBound(vector<int> &nums, int x)
+{
+    int n = nums.size();
+    int low = 0;
+    int high = n - 1;
+    int ans = n;
+
+    while (low <= high)
+    {
+        int mid = low + (high - low) / 2;
+
+        if (nums[mid] >= x)
+        {
+            ans = mid;
+            high = mid - 1;
+        }
+        else
+            low = mid + 1;
+    }
+
+    return ans;
+}
+
 int main()
 {
     int n;
     cin >> n;
 
-    if (n <= 1)
+    vector<int> nums(n);
+
+    for (int i = 0; i < n; i++)
     {
-        cout << "It's not a prime number.";
-        return 0;
+        cin >> nums[i];
     }
 
-    int cnt = 0;
+    int x;
+    cin >> x;
 
-    for (int i = 1; i * i <= n; i++)
-    {
-        if (n % i == 0)
-        {
-            cnt++;
-
-            if (n / i != i)
-                cnt++;
-        }
-    }
-
-    if (cnt == 2)
-        cout << "It's a prime number.";
-    else
-        cout << "It's not a prime number.";
+    cout << lowerBound(nums, x);
 
     return 0;
 }
