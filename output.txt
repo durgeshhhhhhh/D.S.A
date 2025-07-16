@@ -1,2 +1,1 @@
-8208
-Yes! it's an Armstrong
+1 36 2 18 3 12 4 9 6
