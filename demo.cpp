@@ -3,24 +3,23 @@ using namespace std;
 
 int main()
 {
-    int n;
-    cin >> n;
+    int n1;
+    cin >> n1;
 
-    int original_number = n;
+    int n2;
+    cin >> n2;
 
-    int rev_no = 0;
+    int gcd = 1;
 
-    while (n > 0)
+    for (int i = min(n1, n2); i >= 1; i--)
     {
-        int rem = n % 10;
-        rev_no = rev_no * 10 + rem;
-        n = n / 10;
+        if (n1 % i == 0 && n2 % i == 0)
+        {
+            gcd = i;
+            break;
+        }
     }
-
-    if (rev_no == original_number)
-        cout << "true, it's a pallindronme.";
-    else
-        cout << "False, it's not a pallindrome.";
+    cout << gcd;
 
     return 0;
 }
