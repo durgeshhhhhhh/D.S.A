@@ -14,7 +14,7 @@ int upperBound(vector<int> &nums, int x)
 
         if (nums[mid] >= x)
         {
-            ans = mid;
+            ans = nums[mid];
             high = mid - 1;
         }
         else
