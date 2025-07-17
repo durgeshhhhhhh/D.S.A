@@ -6,20 +6,20 @@ int upperBound(vector<int> &nums, int x)
     int n = nums.size();
     int low = 0;
     int high = n - 1;
-    int ans = n;
+    int ans = -1;
 
     while (low <= high)
     {
         int mid = low + (high - low) / 2;
 
-        if (nums[mid] >= x)
+        if (nums[mid] <= x)
         {
             ans = nums[mid];
-            high = mid - 1;
+            low = mid+1;
         }
         else
         {
-            low = mid + 1;
+            high = mid - 1;
         }
     }
 
