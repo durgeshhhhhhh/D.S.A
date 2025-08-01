@@ -6,20 +6,20 @@ int binarySearch(vector<int> &nums, int target)
     int n = nums.size();
     int low = 0;
     int high = n - 1;
-    int ans = n;
+    int ans = -1;
 
     while (low <= high)
     {
         int mid = (low + high) / 2;
 
-        if (nums[mid] > target)
+        if (nums[mid] <= target)
         {
-            ans = mid;
-            high = mid - 1;
+            ans = nums[mid];
+            low = mid + 1;
         }
         else
         {
-            low = mid + 1;
+            high = mid - 1;
         }
     }
 
