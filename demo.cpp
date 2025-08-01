@@ -1,19 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int binarySearch(vector<int> &nums, int low, int high, int target)
+int binarySearch(vector<int> &nums, int target)
 {
-    if (low > high)
-        return -1;
+    int n = nums.size();
+    int low = 0;
+    int high = n - 1;
+    int ans = n;
 
-    int mid = (low + high) / 2;
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
 
-    if (nums[mid] == target)
-        return mid;
-    else if (nums[mid] > target)
-        return binarySearch(nums, low, mid - 1, target);
-    else
-        return binarySearch(nums, mid + 1, high, target);
+        if (nums[mid] >= target)
+        {
+            ans = mid;
+            high = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+
+    return ans;
 }
 
 int main()
@@ -31,7 +41,7 @@ int main()
     int target;
     cin >> target;
 
-    cout << binarySearch(nums, 0, n, target);
+    cout << binarySearch(nums, target);
 
     /*for (int i = 0; i < n; i++)
     {
