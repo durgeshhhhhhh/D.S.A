@@ -1,29 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int upperBound(vector<int> &nums, int x)
+int binarySearch(vector<int> &nums, int target)
 {
     int n = nums.size();
     int low = 0;
     int high = n - 1;
-    int ans = -1;
 
     while (low <= high)
     {
-        int mid = low + (high - low) / 2;
+        int mid = (low + high) / 2;
 
-        if (nums[mid] <= x)
-        {
-            ans = nums[mid];
-            low = mid+1;
-        }
+        if (nums[mid] == target)
+            return mid;
+        else if (nums[mid] < target)
+            low = mid + 1;
         else
-        {
             high = mid - 1;
-        }
     }
 
-    return ans;
+    return -1;
 }
 
 int main()
@@ -38,10 +34,15 @@ int main()
         cin >> nums[i];
     }
 
-    int x;
-    cin >> x;
+    int target;
+    cin >> target;
 
-    cout << upperBound(nums, x);
+    cout << binarySearch(nums, target);
+
+    /*for (int i = 0; i < n; i++)
+    {
+        cout << nums[i] << " ";
+    }*/
 
     return 0;
 }
