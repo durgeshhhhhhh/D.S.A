@@ -1,25 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> searchRange(vector<int> &nums, int target)
+int search(vector<int> &nums, int target)
 {
-    int first = -1;
-    int last = -1;
     int n = nums.size();
 
     for (int i = 0; i < n; i++)
     {
         if (nums[i] == target)
         {
-            if (first == -1)
-            {
-                first = i;
-            }
-            last = i;
+            return i;
         }
     }
-
-    return {first, last};
 }
 
 int main()
@@ -37,9 +29,7 @@ int main()
     int target;
     cin >> target;
 
-    vector<int> result = searchRange(nums, target);
-
-    cout << "[" << result[0] << " , " << result[1] << "]";
+    cout << search(nums, target);
 
     /*for (int i = 0; i < n; i++)
     {
