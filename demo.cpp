@@ -3,51 +3,23 @@ using namespace std;
 
 vector<int> searchRange(vector<int> &nums, int target)
 {
+    int first = -1;
+    int last = -1;
     int n = nums.size();
-    int low = 0;
-    int high = n - 1;
-    int i = -1;
-    int j = -1;
 
-    while (low <= high)
+    for (int i = 0; i < n; i++)
     {
-        int mid = (low + high) / 2;
-
-        if (nums[mid] == target)
+        if (nums[i] == target)
         {
-            i = mid;
-            high = mid - 1;
+            if (first == -1)
+            {
+                first = i;
+            }
+            last = i;
         }
-        else if (nums[mid] > target)
-            high = mid - 1;
-        else
-            low = mid + 1;
     }
 
-    if (i == -1)
-    {
-        return {i, j};
-    }
-
-    low = 0;
-    high = n - 1;
-
-    while (low <= high)
-    {
-        int mid = (low + high) / 2;
-
-        if (nums[mid] == target)
-        {
-            j = mid;
-            low = mid + 1;
-        }
-        else if (nums[mid] < target)
-            low = mid + 1;
-        else
-            high = mid - 1;
-    }
-
-    return {i, j};
+    return {first, last};
 }
 
 int main()
