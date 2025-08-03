@@ -12,6 +12,8 @@ int search(vector<int> &nums, int target)
             return i;
         }
     }
+
+    return -1;
 }
 
 int main()
