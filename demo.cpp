@@ -1,30 +1,22 @@
-#include <bits/stdc++.h>;
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    string s;
-    cin >> s;
-
-    cout << s.length();
-
-    /*int n;
+    int n;
     cin >> n;
+    int rev_number = 0;
 
-    int cnt;
-
-    if (n == 0)
+    while (n > 0)
     {
-        cout << 1;
+        int remm = n % 10;
+
+        rev_number = rev_number * 10 + remm;
+
+        n = n / 10;
     }
-    else
-    {
-        while (n > 0)
-        {
-            cnt++;
-            n /= 10;
-        }
-    }*/
+
+    cout << rev_number;
 
     return 0;
 }
