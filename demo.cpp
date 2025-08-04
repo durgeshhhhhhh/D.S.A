@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>;
 using namespace std;
 
-int search(vector<int> &nums, int target)
+bool search(vector<int> &nums, int target)
 {
     int n = nums.size();
     int low = 0;
@@ -12,7 +12,16 @@ int search(vector<int> &nums, int target)
         int mid = low + (high - low) / 2;
 
         if (nums[mid] == target)
-            return mid;
+        {
+            return true;
+        }
+
+        if (nums[mid] == nums[low] && nums[mid] == nums[high])
+        {
+            low++;
+            high--;
+            continue;
+        }
 
         if (nums[low] <= nums[mid])
         {
@@ -29,7 +38,7 @@ int search(vector<int> &nums, int target)
                 high = mid - 1;
         }
     }
-    return -1;
+    return false;
 }
 
 int main()
