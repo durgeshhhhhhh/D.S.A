@@ -3,17 +3,28 @@ using namespace std;
 
 int main()
 {
-    int n;
+    string s;
+    cin >> s;
+
+    cout << s.length();
+
+    /*int n;
     cin >> n;
-    int cnt = 0;
 
-    while (n > 0)
+    int cnt;
+
+    if (n == 0)
     {
-        cnt++;
-        n = n / 10;
+        cout << 1;
     }
-
-    cout << cnt;
+    else
+    {
+        while (n > 0)
+        {
+            cnt++;
+            n /= 10;
+        }
+    }*/
 
     return 0;
 }
