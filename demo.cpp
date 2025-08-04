@@ -1,32 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool pallindrome(int n, int original_number)
-{
-    int rev_number = 0;
-
-    while (n > 0)
-    {
-        int remm = n % 10;
-
-        rev_number = rev_number * 10 + remm;
-
-        n = n / 10;
-    }
-
-    if (rev_number == original_number)
-        return true;
-    else
-        return false;
-}
-
 int main()
 {
-    int n;
-    cin >> n;
-    int original_number = n;
+    int n1;
+    int n2;
+    cin >> n1;
+    cin >> n2;
 
-    cout << pallindrome(n, original_number);
+    for (int i = min(n1, n2); i >= 1; i--)
+    {
+        if (n1 % i == 0 && n2 % i == 0)
+        {
+            cout << i;
+            break;
+        }
+    }
 
     return 0;
 }
