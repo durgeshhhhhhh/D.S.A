@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
+bool pallindrome(int n, int original_number)
 {
-    int n;
-    cin >> n;
     int rev_number = 0;
 
     while (n > 0)
@@ -16,7 +14,19 @@ int main()
         n = n / 10;
     }
 
-    cout << rev_number;
+    if (rev_number == original_number)
+        return true;
+    else
+        return false;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    int original_number = n;
+
+    cout << pallindrome(n, original_number);
 
     return 0;
 }
