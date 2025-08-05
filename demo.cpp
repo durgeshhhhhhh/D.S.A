@@ -14,8 +14,15 @@ int findMin(vector<int> &nums)
 
         if (nums[low] <= nums[high])
         {
-            ans = min(nums[low], ans);
-            break;
+            ans = min(ans, nums[low]);
+        }
+
+        if (nums[low] == nums[mid] && nums[high] == nums[mid])
+        {
+            ans = min(ans, nums[low]);
+            low++;
+            high--;
+            continue;
         }
 
         if (nums[low] <= nums[mid])
