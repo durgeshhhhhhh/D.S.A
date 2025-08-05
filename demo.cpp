@@ -1,21 +1,51 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int findMin(vector<int> &nums)
+{
+    int n = nums.size();
+    int low = 0;
+    int high = n - 1;
+    int ans = INT_MAX;
+
+    while (low <= high)
+    {
+        int mid = low + (high - low) / 2;
+
+        if (nums[low] <= nums[high])
+        {
+            ans = min(nums[low], ans);
+            break;
+        }
+
+        if (nums[low] <= nums[mid])
+        {
+            ans = min(ans, nums[low]);
+            low = mid + 1;
+        }
+        else
+        {
+            ans = min(ans, nums[mid]);
+            high = mid - 1;
+        }
+    }
+
+    return ans;
+}
+
 int main()
 {
     int n;
     cin >> n;
 
-    for (int i = 1; i * i <= n; i++)
-    {
-        if (n % i == 0)
-        {
-            cout << i << endl;
+    vector<int> nums(n);
 
-            if (i != n / i)
-                cout << n / i << endl;
-        }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
     }
+
+    cout << findMin(nums);
 
     return 0;
 }
