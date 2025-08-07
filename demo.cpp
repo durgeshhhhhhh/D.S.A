@@ -1,63 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int findKRotation(vector<int> &nums)
+int singleNonDuplicate(vector<int> &nums)
 {
     int n = nums.size();
-    int low = 0;
-    int high = n - 1;
-    int ans = INT_MAX;
-    int index = -1;
+
+    if (n == 1)
+        return nums[0];
+
+    if (nums[0] != nums[1])
+    {
+        return nums[0];
+    }
+    else if (nums[n - 1] != nums[n - 2])
+    {
+        return nums[n - 1];
+    }
+
+    int low = 1;
+    int high = n - 2;
 
     while (low <= high)
     {
         int mid = low + (high - low) / 2;
 
-        if (nums[low] < nums[high])
+        if (nums[mid] != nums[mid - 1] && nums[mid] != nums[mid + 1])
         {
-            // ans = min(ans, nums[low]);
-            if (nums[low] < ans)
-            {
-                ans = nums[low];
-                index = low;
-            }
-            break;
+            return nums[mid];
         }
-
-        if (nums[low] == nums[mid] && nums[mid] == nums[high])
+        else if ((mid % 2 == 1 && nums[mid] == nums[mid - 1]) || (mid % 2 == 0 && nums[mid] == nums[mid + 1]))
         {
-            if (nums[low] < ans)
-            {
-                ans = nums[low];
-                index = low;
-            }
-            low++;
-            high--;
-            continue;
-        }
-
-        if (nums[low] <= nums[mid])
-        {
-            // ans = min(ans, nums[low]);
-            if (nums[low] < ans)
-            {
-                ans = nums[low];
-                index = low;
-            }
             low = mid + 1;
         }
         else
         {
-            // ans = min(ans, nums[mid]);
-            if (nums[mid] < ans)
-            {
-                ans = nums[mid];
-                index = mid;
-            }
             high = mid - 1;
         }
     }
-    return index;
+
+    return -1;
 }
 
 int main()
@@ -72,7 +53,7 @@ int main()
         cin >> nums[i];
     }
 
-    cout << findKRotation(nums);
+    cout << singleNonDuplicate(nums);
 
     return 0;
 }
