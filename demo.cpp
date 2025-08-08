@@ -1,40 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int peakElement(vector<int> &nums)
+int squareRoot(int n)
 {
-    int n = nums.size();
-
-    if (n == 1)
-        return 0;
-
-    if (nums[0] > nums[1])
-        return 0;
-    else if (nums[n - 1] > nums[n - 2])
-        return n - 1;
-
-    int low = 1;
-    int high = n - 2;
-
-    while (low <= high)
+    int ans = 1;
+    for (int i = 1; i < n; i++)
     {
-        int mid = low + (high - low) / 2;
-
-        if ((nums[mid] > nums[mid - 1]) && (nums[mid] > nums[mid + 1]))
+        if (i * i <= n)
         {
-            return mid;
-        }
-        else if (nums[mid] > nums[mid - 1])
-        {
-            low = mid + 1;
+            ans = i;
         }
         else
         {
-            high = mid - 1;
+            break;
         }
     }
 
-    return -1;
+    return ans;
 }
 
 int main()
@@ -42,14 +24,7 @@ int main()
     int n;
     cin >> n;
 
-    vector<int> nums(n);
-
-    for (int i = 0; i < n; i++)
-    {
-        cin >> nums[i];
-    }
-
-    cout << peakElement(nums);
+    cout << squareRoot(n);
 
     return 0;
 }
