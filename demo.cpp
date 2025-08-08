@@ -3,17 +3,21 @@ using namespace std;
 
 int squareRoot(int n)
 {
+    int low = 1;
+    int high = n;
     int ans = 1;
-    for (int i = 1; i < n; i++)
+
+    while (low <= high)
     {
-        if (i * i <= n)
+        int mid = low + (high - low) / 2;
+
+        if (mid * mid <= n)
         {
-            ans = i;
+            ans = mid;
+            low = mid + 1;
         }
         else
-        {
-            break;
-        }
+            high = mid - 1;
     }
 
     return ans;
