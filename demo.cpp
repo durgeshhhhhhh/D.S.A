@@ -1,26 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int squareRoot(int n)
+int cubeRoot(int n, int r)
 {
     int low = 1;
     int high = n;
-    int ans = 1;
 
     while (low <= high)
     {
         int mid = low + (high - low) / 2;
 
-        if (mid * mid <= n)
+        if (pow(mid, r) == n)
         {
-            ans = mid;
+            return mid;
+        }
+        else if (pow(mid, r) < n)
+        {
             low = mid + 1;
         }
         else
             high = mid - 1;
     }
 
-    return ans;
+    return -1;
 }
 
 int main()
@@ -28,7 +30,10 @@ int main()
     int n;
     cin >> n;
 
-    cout << squareRoot(n);
+    int r;
+    cin >> r;
+
+    cout << cubeRoot(n, r);
 
     return 0;
 }
