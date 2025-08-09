@@ -3,23 +3,13 @@ using namespace std;
 
 int cubeRoot(int n, int r)
 {
-    int low = 1;
-    int high = n;
-
-    while (low <= high)
+    for (int i = 1; i <= n; i++)
     {
-        int mid = low + (high - low) / 2;
+        if (pow(i, r) == n)
+        {
+            return i;
+        }
 
-        if (pow(mid, r) == n)
-        {
-            return mid;
-        }
-        else if (pow(mid, r) < n)
-        {
-            low = mid + 1;
-        }
-        else
-            high = mid - 1;
     }
 
     return -1;
