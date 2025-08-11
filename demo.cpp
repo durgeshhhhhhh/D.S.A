@@ -1,49 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int func(int mid, int r, int n)
+int totalTime(vector<int> &nums, int h)
 {
-    long long ans = 1;
-
-    for (int i = 1; i <= r; i++)
+    int totalHours = 0;
+    for (int i = 0; i < nums.size(); i++)
     {
-        ans = ans * mid;
-        if (ans > n)
-            return 2;
+        totalHours += ceil(double(nums[i]) / double(h));
     }
 
-    if (ans == n)
-    {
-        return 1;
-    }
-    return 0;
+    cout << totalHours << endl;
+
+    return totalHours;
 }
 
-int cubeRoot(int n, int r)
+int minEatingSpeed(vector<int> &nums, int hours)
 {
+    int n = nums.size();
 
-    if (n == 0)
-        return 0;
-    if (n == 1)
-        return 1;
-    if (r == 1)
-        return n;
+    //    int numsMaxx = *max_element(nums.begin(), nums.end());
 
-    int low = 1;
-    int high = n;
-
-    while (low <= high)
+    int maxx = nums[0];
+    for (int i = 0; i < n; i++)
     {
-        int mid = low + (high - low) / 2;
+        if (nums[i] > maxx)
+        {
+            maxx = nums[i];
+        }
+    }
 
-        int res = func(mid, r, n);
+    for (int i = 1; i <= maxx; i++)
+    {
+        int requireTime = totalTime(nums, i);
 
-        if (res == 1)
-            return mid;
-        else if (res == 2)
-            high = mid - 1;
-        else
-            low = mid + 1;
+        if (requireTime <= hours)
+        {
+            return i;
+        }
     }
 
     return -1;
@@ -54,10 +47,17 @@ int main()
     int n;
     cin >> n;
 
-    int r;
-    cin >> r;
+    vector<int> nums(n);
 
-    cout << cubeRoot(n, r);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
+    }
+
+    int hours;
+    cin >> hours;
+
+    cout << minEatingSpeed(nums, hours);
 
     return 0;
 }
