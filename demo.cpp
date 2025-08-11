@@ -1,45 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int totalTime(vector<int> &nums, int h)
+long long totalHours(vector<int> &nums, int hours)
 {
-    int totalHours = 0;
+    long long time = 0;
+
     for (int i = 0; i < nums.size(); i++)
     {
-        totalHours += ceil(double(nums[i]) / double(h));
+        time += (nums[i] + hours - 1) / hours;
     }
 
-    cout << totalHours << endl;
-
-    return totalHours;
+    return time;
 }
 
-int minEatingSpeed(vector<int> &nums, int hours)
+int minEatingSpeed(vector<int> &nums, int h)
 {
     int n = nums.size();
 
-    //    int numsMaxx = *max_element(nums.begin(), nums.end());
+    int maxx = *max_element(nums.begin(), nums.end());
 
-    int maxx = nums[0];
-    for (int i = 0; i < n; i++)
+    int low = 1;
+    int high = maxx;
+
+    while (low <= high)
     {
-        if (nums[i] > maxx)
+        int mid = low + (high - low) / 2;
+
+        long long requireTime = totalHours(nums, mid);
+
+        if (requireTime <= h)
         {
-            maxx = nums[i];
+            high = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
         }
     }
-
-    for (int i = 1; i <= maxx; i++)
-    {
-        int requireTime = totalTime(nums, i);
-
-        if (requireTime <= hours)
-        {
-            return i;
-        }
-    }
-
-    return -1;
+    return low;
 }
 
 int main()
