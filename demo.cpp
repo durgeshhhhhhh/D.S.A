@@ -21,10 +21,7 @@ bool possible(vector<int> &nums, int days, int m, int k)
 
     bouquets += cnt / k;
 
-    if (bouquets >= m)
-        return true;
-    else
-        return false;
+    return bouquets >= m;
 }
 
 int minDays(vector<int> &nums, int m, int k)
@@ -32,25 +29,29 @@ int minDays(vector<int> &nums, int m, int k)
 
     int n = nums.size();
 
-    if (n < (m * k))
+    if (n < m * k)
     {
         return -1;
     }
 
-    int minn = *min_element(nums.begin(), nums.end());
-    int maxx = *max_element(nums.begin(), nums.end());
+    int low = *min_element(nums.begin(), nums.end());
+    int high = *max_element(nums.begin(), nums.end());
 
-    for (int i = minn; i <= maxx; i++)
+    while (low <= high)
     {
-        bool check = possible(nums, i, m, k);
+        int mid = low + (high - low) / 2;
 
-        if (check)
+        if (possible(nums, mid, m, k))
         {
-            return i;
+            high = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
         }
     }
 
-    return -1;
+    return low;
 }
 
 int main()
