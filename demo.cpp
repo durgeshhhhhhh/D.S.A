@@ -1,54 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool possible(vector<int> &nums, int days, int m, int k)
+int func(vector<int> &nums, int value)
 {
-    int cnt = 0;
-    int bouquets = 0;
-
+    int add = 0;
     for (int i = 0; i < nums.size(); i++)
     {
-        if (nums[i] <= days)
-        {
-            cnt++;
-        }
-        else
-        {
-            bouquets += cnt / k;
-            cnt = 0;
-        }
+        add += (nums[i] + value - 1) / value;
     }
 
-    bouquets += cnt / k;
-
-    return bouquets >= m;
+    return add;
 }
 
-int minDays(vector<int> &nums, int m, int k)
+int smallestDivisor(vector<int> &nums, int threshold)
 {
-
     int n = nums.size();
 
-    if (n < m * k)
-    {
-        return -1;
-    }
-
-    int low = *min_element(nums.begin(), nums.end());
     int high = *max_element(nums.begin(), nums.end());
+    int low = 1;
 
     while (low <= high)
     {
         int mid = low + (high - low) / 2;
 
-        if (possible(nums, mid, m, k))
+        int number = func(nums, mid);
+
+        if (number <= threshold)
         {
             high = mid - 1;
         }
         else
-        {
             low = mid + 1;
-        }
     }
 
     return low;
@@ -66,13 +48,10 @@ int main()
         cin >> nums[i];
     }
 
-    int m;
-    cin >> m;
+    int threshold;
+    cin >> threshold;
 
-    int k;
-    cin >> k;
-
-    cout << minDays(nums, m, k);
+    cout << smallestDivisor(nums, threshold);
 
     return 0;
 }
