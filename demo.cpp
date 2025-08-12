@@ -1,43 +1,56 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long totalHours(vector<int> &nums, int hours)
+bool possible(vector<int> &nums, int days, int m, int k)
 {
-    long long time = 0;
+    int cnt = 0;
+    int bouquets = 0;
 
     for (int i = 0; i < nums.size(); i++)
     {
-        time += (nums[i] + hours - 1) / hours;
-    }
-
-    return time;
-}
-
-int minEatingSpeed(vector<int> &nums, int h)
-{
-    int n = nums.size();
-
-    int maxx = *max_element(nums.begin(), nums.end());
-
-    int low = 1;
-    int high = maxx;
-
-    while (low <= high)
-    {
-        int mid = low + (high - low) / 2;
-
-        long long requireTime = totalHours(nums, mid);
-
-        if (requireTime <= h)
+        if (nums[i] <= days)
         {
-            high = mid - 1;
+            cnt++;
         }
         else
         {
-            low = mid + 1;
+            bouquets += cnt / k;
+            cnt = 0;
         }
     }
-    return low;
+
+    bouquets += cnt / k;
+
+    if (bouquets >= m)
+        return true;
+    else
+        return false;
+}
+
+int minDays(vector<int> &nums, int m, int k)
+{
+
+    int n = nums.size();
+
+    if (n < (m * k))
+    {
+        return -1;
+    }
+
+    int minn = *min_element(nums.begin(), nums.end());
+    int maxx = *max_element(nums.begin(), nums.end());
+
+    for (int i = minn; i <= maxx; i++)
+    {
+        bool check = possible(nums, i, m, k);
+
+        if (check)
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 int main()
@@ -52,10 +65,13 @@ int main()
         cin >> nums[i];
     }
 
-    int hours;
-    cin >> hours;
+    int m;
+    cin >> m;
 
-    cout << minEatingSpeed(nums, hours);
+    int k;
+    cin >> k;
+
+    cout << minDays(nums, m, k);
 
     return 0;
 }
