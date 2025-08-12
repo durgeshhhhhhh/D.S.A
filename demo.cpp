@@ -5,9 +5,11 @@ void printName(int n)
 {
 
     if (n < 1)
+    {
         return;
-    cout << "Durgesh Shekhawat" << endl;
+    }
     printName(n - 1);
+    cout << n << endl;
 };
 
 int main()
