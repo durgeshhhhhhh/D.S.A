@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int func(vector<int> &nums, int value)
+int sumOfDivision(vector<int> &nums, int value)
 {
     int add = 0;
     for (int i = 0; i < nums.size(); i++)
@@ -20,9 +20,7 @@ int smallestDivisor(vector<int> &nums, int threshold)
 
     for (int i = 1; i <= maxx; i++)
     {
-        int number = func(nums, i);
-
-        if (number <= threshold)
+        if (sumOfDivision(nums, i) <= threshold)
         {
             return i;
         }
