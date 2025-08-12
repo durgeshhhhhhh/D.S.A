@@ -16,24 +16,18 @@ int smallestDivisor(vector<int> &nums, int threshold)
 {
     int n = nums.size();
 
-    int high = *max_element(nums.begin(), nums.end());
-    int low = 1;
+    int maxx = *max_element(nums.begin(), nums.end());
 
-    while (low <= high)
+    for (int i = 1; i <= maxx; i++)
     {
-        int mid = low + (high - low) / 2;
-
-        int number = func(nums, mid);
+        int number = func(nums, i);
 
         if (number <= threshold)
         {
-            high = mid - 1;
+            return i;
         }
-        else
-            low = mid + 1;
     }
-
-    return low;
+    return -1;
 }
 
 int main()
