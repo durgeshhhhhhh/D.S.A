@@ -8,8 +8,8 @@ void printName(int n)
     {
         return;
     }
-    printName(n - 1);
     cout << n << endl;
+    printName(n - 1);
 };
 
 int main()
