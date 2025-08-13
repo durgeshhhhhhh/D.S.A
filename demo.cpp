@@ -34,26 +34,17 @@ int shipWithinDays(vector<int> &weights, int days)
         summ += weights[i];
     }
 
-    int low = maxxWeight;
-    int high = summ;
-
-    while (low <= high)
+    for (int i = maxxWeight; i <= summ; i++)
     {
-        int mid = low + (high - low) / 2;
-
-        int requiredDays = countDays(weights, mid);
+        int requiredDays = countDays(weights, i);
 
         if (requiredDays <= days)
         {
-            high = mid - 1;
-        }
-        else
-        {
-            low = mid + 1;
+            return i;
         }
     }
 
-    return low;
+    return -1;
 }
 
 int main()
