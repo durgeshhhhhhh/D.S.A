@@ -3,19 +3,25 @@ using namespace std;
 
 int findKthPositive(vector<int> &nums, int k)
 {
-    for (int i = 0; i < nums.size(); i++)
+    int n = nums.size();
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high)
     {
-        if (nums[i] <= k)
+        int mid = low + (high - low) / 2;
+
+        if (nums[mid] - (mid + 1) < k)
         {
-            k++;
+            low = mid + 1;
         }
         else
         {
-            return k;
+            high = mid - 1;
         }
     }
 
-    return -1;
+    return low + k;
 }
 
 int main()
