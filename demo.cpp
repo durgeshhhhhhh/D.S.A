@@ -1,27 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int findKthPositive(vector<int> &nums, int k)
+bool isValid(vector<int> &arr, int maxAllowedPages, int stu)
 {
-    int n = nums.size();
-    int low = 0;
-    int high = n - 1;
+    int current_stu = 1;
+    int pages = 0;
+
+    for (int i = 0; i < arr.size(); i++)
+    {
+        if (pages + arr[i] <= maxAllowedPages)
+        {
+            pages += arr[i];
+        }
+        else
+        {
+            current_stu++;
+            pages = arr[i];
+        }
+    }
+
+    if (current_stu <= stu)
+        return true;
+    else
+        return false;
+}
+
+int findPages(vector<int> &arr, int m)
+{
+    int n = arr.size();
+
+    int summ = 0, low = 0;
+    for (int i = 0; i < n; i++)
+    {
+        summ += arr[i];
+        low = max(low, arr[i]);
+    }
+
+    int high = summ;
 
     while (low <= high)
     {
         int mid = low + (high - low) / 2;
 
-        if (nums[mid] - (mid + 1) < k)
-        {
-            low = mid + 1;
-        }
-        else
+        if (isValid(arr, mid, m))
         {
             high = mid - 1;
         }
+        else
+        {
+            low = mid + 1;
+        }
     }
 
-    return low + k;
+    return low;
 }
 
 int main()
@@ -29,17 +60,17 @@ int main()
     int n;
     cin >> n;
 
-    vector<int> nums(n);
+    vector<int> arr(n);
 
     for (int i = 0; i < n; i++)
     {
-        cin >> nums[i];
+        cin >> arr[i];
     }
 
-    int k;
-    cin >> k;
+    int m;
+    cin >> m;
 
-    cout << findKthPositive(nums, k);
+    cout << findPages(arr, m);
 
     return 0;
 }
