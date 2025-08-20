@@ -1,48 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isValid(vector<int> &arr, int maxAllowedPages, int stu)
+bool isValid(vector<int> &arr, int maxAllowedTime, int painter)
 {
-    int current_stu = 1;
-    int pages = 0;
+    int current_painter = 1;
+    int time = 0;
 
     for (int i = 0; i < arr.size(); i++)
     {
-        if (pages + arr[i] <= maxAllowedPages)
+        if (time + arr[i] <= maxAllowedTime)
         {
-            pages += arr[i];
+            time += arr[i];
         }
         else
         {
-            current_stu++;
-            pages = arr[i];
+            current_painter++;
+            time = arr[i];
+
+            if (current_painter > painter)
+                return false;
         }
     }
 
-    if (current_stu <= stu)
-        return true;
-    else
-        return false;
+    return current_painter <= painter ? true : false;
 }
 
-int findPages(vector<int> &arr, int m)
+int minimumTime(vector<int> &arr, int painter)
 {
     int n = arr.size();
 
-    int summ = 0, low = 0;
+    int high = 0;
+    int low = 0;
     for (int i = 0; i < n; i++)
     {
-        summ += arr[i];
+        high += arr[i];
         low = max(low, arr[i]);
     }
-
-    int high = summ;
 
     while (low <= high)
     {
         int mid = low + (high - low) / 2;
 
-        if (isValid(arr, mid, m))
+        if (isValid(arr, mid, painter))
         {
             high = mid - 1;
         }
@@ -70,7 +69,7 @@ int main()
     int m;
     cin >> m;
 
-    cout << findPages(arr, m);
+    cout << minimumTime(arr, m);
 
     return 0;
 }
