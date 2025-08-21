@@ -1,57 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isValid(vector<int> &arr, int maxAllowedTime, int painter)
+bool isValid(vector<int> &arr, int minAllowedDistance, int cows)
 {
-    int current_painter = 1;
-    int time = 0;
+    int current_cows = 1;
+    int lastStallPosition = arr[0];
 
-    for (int i = 0; i < arr.size(); i++)
+    for (int i = 1; i < arr.size(); i++)
     {
-        if (time + arr[i] <= maxAllowedTime)
+        if (arr[i] - lastStallPosition >= minAllowedDistance)
         {
-            time += arr[i];
+            current_cows++;
+            lastStallPosition = arr[i];
         }
-        else
-        {
-            current_painter++;
-            time = arr[i];
 
-            if (current_painter > painter)
-                return false;
-        }
+        if (current_cows == cows)
+            return true;
     }
 
-    return current_painter <= painter ? true : false;
+    return false;
 }
 
-int minimumTime(vector<int> &arr, int painter)
+int aggresiveCows(vector<int> &arr, int cows)
 {
     int n = arr.size();
 
-    int high = 0;
-    int low = 0;
-    for (int i = 0; i < n; i++)
-    {
-        high += arr[i];
-        low = max(low, arr[i]);
-    }
+    sort(arr.begin(), arr.end());
+
+    int low = 1;
+    int high = arr[n - 1] - arr[0];
 
     while (low <= high)
     {
         int mid = low + (high - low) / 2;
 
-        if (isValid(arr, mid, painter))
-        {
-            high = mid - 1;
-        }
-        else
+        if (isValid(arr, mid, cows))
         {
             low = mid + 1;
         }
+        else
+        {
+            high = mid - 1;
+        }
     }
-
-    return low;
+    return high;
 }
 
 int main()
@@ -66,10 +58,10 @@ int main()
         cin >> arr[i];
     }
 
-    int m;
-    cin >> m;
+    int k;
+    cin >> k;
 
-    cout << minimumTime(arr, m);
+    cout << aggresiveCows(arr, k);
 
     return 0;
 }
