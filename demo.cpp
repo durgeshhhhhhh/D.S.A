@@ -1,67 +1,77 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isValid(vector<int> &arr, int minAllowedDistance, int cows)
+double medianSortedArrays(vector<int> &nums1, vector<int> &nums2)
 {
-    int current_cows = 1;
-    int lastStallPosition = arr[0];
+    int n1 = nums1.size();
+    int n2 = nums2.size();
 
-    for (int i = 1; i < arr.size(); i++)
+    int i = 0;
+    int j = 0;
+
+    vector<int> arr;
+
+    while (i < n1 && j < n2)
     {
-        if (arr[i] - lastStallPosition >= minAllowedDistance)
+        if (nums1[i] <= nums2[j])
         {
-            current_cows++;
-            lastStallPosition = arr[i];
-        }
-
-        if (current_cows == cows)
-            return true;
-    }
-
-    return false;
-}
-
-int aggresiveCows(vector<int> &arr, int cows)
-{
-    int n = arr.size();
-
-    sort(arr.begin(), arr.end());
-
-    int low = 1;
-    int high = arr[n - 1] - arr[0];
-
-    while (low <= high)
-    {
-        int mid = low + (high - low) / 2;
-
-        if (isValid(arr, mid, cows))
-        {
-            low = mid + 1;
+            arr.push_back(nums1[i]);
+            i++;
         }
         else
         {
-            high = mid - 1;
+            arr.push_back(nums2[j]);
+            j++;
         }
     }
-    return high;
+
+    while (i < n1)
+    {
+        arr.push_back(nums1[i]);
+        i++;
+    }
+
+    while (j < n2)
+    {
+        arr.push_back(nums2[j]);
+        j++;
+    }
+
+    int n = arr.size();
+
+    if (n % 2 == 0)
+    {
+        return (arr[n / 2] + arr[n / 2 - 1]) / 2.0;
+    }
+    else
+    {
+        return arr[n / 2];
+    }
 }
 
 int main()
 {
-    int n;
-    cin >> n;
+    int n1;
+    cin >> n1;
 
-    vector<int> arr(n);
+    vector<int> nums1(n1);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n1; i++)
     {
-        cin >> arr[i];
+        cin >> nums1[i];
     }
 
-    int k;
-    cin >> k;
+    int n2;
+    cin >> n2;
 
-    cout << aggresiveCows(arr, k);
+    vector<int> nums2(n2);
+
+    for (int i = 0; i < n2; i++)
+    {
+        cin >> nums2[i];
+    }
+
+    cout << medianSortedArrays(nums1, nums2);
 
     return 0;
 }
