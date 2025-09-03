@@ -1,33 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int fibonacci(int n)
+int myAtoi(string s)
 {
-    if (n == 0)
-        return 0;
-    if (n == 1)
-        return 1;
+    int n = s.length();
 
-    int lastSecond = 0;
-    int lastFirst = 1;
-    int current;
+    int i = 0;
 
-    for (int i = 2; i <= n; i++)
+    if (i < n && s[i] == ' ')
     {
-        current = lastSecond + lastFirst;
-        lastSecond = lastFirst;
-        lastFirst = current;
+        i++;
     }
 
-    return lastFirst;
+    if (i == n)
+        return 0;
+
+    int sign = 1;
+    if (s[i] == '-')
+    {
+        sign = -1;
+        i++;
+    }
+    else if (s[i] == '+')
+    {
+        i++;
+    }
+
+    long long result = 0;
+    while (i < n && isdigit(s[i]))
+    {
+        int digit = s[i] - '0';
+
+        if (result > (INT_MAX - digit) / 10)
+        {
+            return sign == 1 ? INT_MAX : INT_MIN;
+        }
+
+        result = result * 10 + digit;
+        i++;
+    }
+
+    return sign * result;
 }
 
 int main()
 {
-    int n;
-    cin >> n;
+    string s;
+    cin >> s;
 
-    cout << fibonacci(n);
+    cout << myAtoi(s);
 
     return 0;
 }
