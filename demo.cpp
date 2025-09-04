@@ -1,13 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
+void changeA(int *ptr)
+{
+    *ptr = 20;
+}
 
 int main()
 {
-    int n = 10;
+    int a = 10;
 
-    cout << &n << endl;
+    changeA(&a);
 
-    int *ptr = &n;
+    cout << "Value of a is " << a;
 
-    cout << ptr;
+    return 0;
 }
