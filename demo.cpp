@@ -1,17 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
-void changeA(int *ptr)
+
+class Teacher
 {
-    *ptr = 20;
-}
+private:
+    double salary;
+
+public:
+    string name;
+    string dept;
+    string subject;
+
+    void changeDept(string newDept)
+    {
+        dept = newDept;
+    }
+
+    void setsalary(double s)
+    {
+        salary = s;
+    }
+
+    double getsalary()
+    {
+        return salary;
+    }
+};
 
 int main()
 {
-    int a = 10;
+    Teacher t1;
 
-    changeA(&a);
+    t1.setsalary(25000);
 
-    cout << "Value of a is " << a;
+    cout << t1.getsalary() << endl;
 
     return 0;
 }
