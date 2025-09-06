@@ -11,6 +11,11 @@ public:
     string dept;
     string subject;
 
+    Teacher()
+    {
+        dept = "Computer Science";
+    }
+
     void changeDept(string newDept)
     {
         dept = newDept;
@@ -34,6 +39,7 @@ int main()
     t1.setsalary(25000);
 
     cout << t1.getsalary() << endl;
+    cout << t1.dept << endl;
 
     return 0;
 }
