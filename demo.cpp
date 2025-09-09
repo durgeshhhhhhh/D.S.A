@@ -11,17 +11,20 @@ public:
     string dept;
     string subject;
 
-    Teacher()
-    {
-        cout << "non-parameterized constructor called" << endl;
-    }
-
     Teacher(string name, string dept, string subject, double salary)
     {
         this->name = name;
         this->dept = dept;
         this->subject = subject;
         this->salary = salary;
+    }
+
+    Teacher(Teacher &orgObj)
+    {
+        this->name = orgObj.name;
+        this->dept = orgObj.dept;
+        this->subject = orgObj.subject;
+        this->salary = orgObj.salary;
     }
 
     void getInfo()
@@ -48,7 +51,6 @@ int main()
     Teacher t1("Durgesh Shekhawat", "SWE-III", "Backend Developer", 8500000);
 
     cout << t1.getSalary() << endl
-         << endl
          << endl;
 
     t1.setsalary(9000000);
@@ -57,10 +59,8 @@ int main()
 
     cout << endl;
     cout << endl;
-    cout << endl;
-    cout << endl;
 
-    Teacher t2(t1);
+    Teacher t2(t1); // custom constructor - Invoked
     t2.getInfo();
 
     return 0;
