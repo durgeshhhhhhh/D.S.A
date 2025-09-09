@@ -1,11 +1,6 @@
-8500000
-
-Name : Durgesh Shekhawat
-Department : SWE-III
-Subject : Backend Developer
-salary : 9000000
-
-Name : Durgesh Shekhawat
-Department : SWE-III
-Subject : Backend Developer
-salary : 9000000
+name : Aman
+cgpa : 8.9
+name : Aman
+cgpa : 8.9
+name : neha
+cgpa : 9.2

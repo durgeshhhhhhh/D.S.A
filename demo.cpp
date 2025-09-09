@@ -1,67 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Teacher
+class Student
 {
-private:
-    long long salary;
-
 public:
     string name;
-    string dept;
-    string subject;
+    double *cgpaPtr;
 
-    Teacher(string name, string dept, string subject, double salary)
+    Student(string name, double cgpa)
     {
         this->name = name;
-        this->dept = dept;
-        this->subject = subject;
-        this->salary = salary;
+        cgpaPtr = new double;
+        *cgpaPtr = cgpa;
     }
 
-    Teacher(Teacher &orgObj)
+    Student(Student &orgObj)
     {
         this->name = orgObj.name;
-        this->dept = orgObj.dept;
-        this->subject = orgObj.subject;
-        this->salary = orgObj.salary;
+        cgpaPtr = new double;
+        *cgpaPtr = *orgObj.cgpaPtr;
     }
 
     void getInfo()
     {
-        cout << "Name : " << name << endl
-             << "Department : " << dept << endl
-             << "Subject : " << subject << endl
-             << "salary : " << salary;
-    }
-
-    void setsalary(long long s)
-    {
-        salary = s;
-    }
-
-    long long getSalary()
-    {
-        return salary;
+        cout << "name : " << name << endl;
+        cout << "cgpa : " << *cgpaPtr << endl;
     }
 };
 
 int main()
 {
-    Teacher t1("Durgesh Shekhawat", "SWE-III", "Backend Developer", 8500000);
 
-    cout << t1.getSalary() << endl
-         << endl;
+    Student s1("Aman", 8.9);
+    Student s2(s1);
 
-    t1.setsalary(9000000);
+    s1.getInfo();
 
-    t1.getInfo();
+    *(s2.cgpaPtr) = 9.2;
 
-    cout << endl;
-    cout << endl;
+    s1.getInfo();
 
-    Teacher t2(t1); // custom constructor - Invoked
-    t2.getInfo();
+    s2.name = "neha";
+
+    s2.getInfo();
 
     return 0;
 }
