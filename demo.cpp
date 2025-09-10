@@ -7,15 +7,11 @@ public:
     string name;
     int age;
 
-    Person()
-    {
-        cout << "I am Parent Constructor" << endl;
-    }
-
-    ~Person()
-    {
-        cout << "I am Parent Destructor" << endl;
-    }
+    // Person(string name, int age)
+    // {
+    //     this->name = name;
+    //     this->age = age;
+    // }
 };
 
 class Student : public Person
@@ -23,34 +19,39 @@ class Student : public Person
 public:
     int roll;
 
-    ~Student()
-    {
-        cout << "I am child destructor" << endl;
-    }
+    // Student(string name, int age, int roll) : Person(name, age)
+    // {
+    //     this->roll = roll;
+    // }
 
-    Student()
-    {
-        cout << "I am child Constructor" << endl;
-    }
+    // void getInfo()
+    // {
+    //     cout << "name: " << name << endl;
+    //     cout << "age: " << age << endl;
+    //     cout << "roll: " << roll << endl;
+    // }
+};
 
-    void getInfo()
-    {
-        cout << "name: " << name << endl;
-        cout << "age: " << age << endl;
-        cout << "roll: " << roll << endl;
-    }
+class Graduated : public Student
+{
+public:
+    string researchArea;
 };
 
 int main()
 {
 
-    Student s1;
+    Graduated g1;
 
-    s1.name = "yogesh";
-    s1.age = 12;
-    s1.roll = 12390;
+    g1.name = "Saumya";
+    g1.age = 21;
+    g1.roll = 234;
+    g1.researchArea = "REACT";
 
-    s1.getInfo();
+    cout << g1.name << endl;
+    cout << g1.age << endl;
+    cout << g1.roll << endl;
+    cout << g1.researchArea << endl;
 
     return 0;
 }
