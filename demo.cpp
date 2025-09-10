@@ -1,36 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Student
+class Person
 {
 public:
     string name;
-    double *cgpaPtr;
+    int age;
 
-    Student(string name, double cgpa)
-    {
-        this->name = name;
-        cgpaPtr = new double;
-        *cgpaPtr = cgpa;
-    }
+    // Person(string name, int age)
+    // {
+    //     this->name = name;
+    //     this->age = age;
+    // }
 
-    ~Student()
-    {
-        cout << "Hi, I am a destructor";
-        delete cgpaPtr; // Memory Leak
-    }
+    Person() {}
+};
+
+class Student : public Person
+{
+public:
+    int rollNo;
 
     void getInfo()
     {
         cout << "name : " << name << endl;
-        cout << "cgpa : " << *cgpaPtr << endl;
+        cout << "age : " << age << endl;
+        cout << "roll no: : " << rollNo << endl;
     }
 };
 
 int main()
 {
+    Student s1;
 
-    Student s1("Aman", 8.9);
+    s1.name = "Yogesh";
+    s1.age = 21;
+    s1.rollNo = 1234;
 
     s1.getInfo();
 
