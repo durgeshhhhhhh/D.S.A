@@ -1,57 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Person
+class Student
 {
 public:
     string name;
-    int age;
-
-    // Person(string name, int age)
-    // {
-    //     this->name = name;
-    //     this->age = age;
-    // }
-};
-
-class Student : public Person
-{
-public:
     int roll;
-
-    // Student(string name, int age, int roll) : Person(name, age)
-    // {
-    //     this->roll = roll;
-    // }
-
-    // void getInfo()
-    // {
-    //     cout << "name: " << name << endl;
-    //     cout << "age: " << age << endl;
-    //     cout << "roll: " << roll << endl;
-    // }
 };
 
-class Graduated : public Student
+class Teacher
 {
 public:
-    string researchArea;
+    string subject;
+    double salary;
+};
+
+class TA : public Student,
+           public Teacher
+{
+    // public:
+    //     string researchArea;
 };
 
 int main()
 {
 
-    Graduated g1;
+    TA t1;
 
-    g1.name = "Saumya";
-    g1.age = 21;
-    g1.roll = 234;
-    g1.researchArea = "REACT";
+    t1.name = "Saumya shekhawat";
+    t1.subject = "21";
+    t1.roll = 234;
+    t1.salary = 70000;
 
-    cout << g1.name << endl;
-    cout << g1.age << endl;
-    cout << g1.roll << endl;
-    cout << g1.researchArea << endl;
+    cout << t1.name << endl;
+    cout << t1.roll << endl;
+    cout << t1.subject << endl;
+    cout << t1.salary << endl;
 
     return 0;
 }
