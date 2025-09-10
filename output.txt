@@ -1,3 +1,7 @@
-name : Yogesh
-age : 21
-roll no: : 1234
+I am Parent Constructor
+I am child Constructor
+name: yogesh
+age: 12
+roll: 12390
+I am child destructor
+I am Parent Destructor
