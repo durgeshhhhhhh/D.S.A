@@ -14,11 +14,10 @@ public:
         *cgpaPtr = cgpa;
     }
 
-    Student(Student &orgObj)
+    ~Student()
     {
-        this->name = orgObj.name;
-        cgpaPtr = new double;
-        *cgpaPtr = *orgObj.cgpaPtr;
+        cout << "Hi, I am a destructor";
+        delete cgpaPtr; // Memory Leak
     }
 
     void getInfo()
@@ -32,17 +31,8 @@ int main()
 {
 
     Student s1("Aman", 8.9);
-    Student s2(s1);
 
     s1.getInfo();
-
-    *(s2.cgpaPtr) = 9.2;
-
-    s1.getInfo();
-
-    s2.name = "neha";
-
-    s2.getInfo();
 
     return 0;
 }

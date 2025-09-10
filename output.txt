@@ -1,6 +1,3 @@
 name : Aman
 cgpa : 8.9
-name : Aman
-cgpa : 8.9
-name : neha
-cgpa : 9.2
+Hi, I am a destructor
