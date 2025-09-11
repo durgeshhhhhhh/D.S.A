@@ -1,20 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void func()
+class ABC
 {
-    static int x = 10; // this code runs for 1-times
+public:
+    ABC()
+    {
+        cout << "Constructor called \n";
+    }
 
-    cout << x << endl; // This two lines run for all  times
-    x++;
-}
+    ~ABC()
+    {
+        cout << "Destructor \n";
+    }
+};
 
 int main()
 {
-    func();
-    func();
-    func();
-    func();
-    func();
+    if (true)
+    {
+        static ABC A;
+    }
+
+    cout << "Main function ends here \n";
+
     return 0;
 }
