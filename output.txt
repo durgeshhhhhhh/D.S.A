@@ -1,2 +1,2 @@
-child class 
+Hello from child 
 Parents class 
