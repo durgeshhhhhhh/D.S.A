@@ -1,26 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Student
+class Parent
 {
 public:
-    string name;
-
-    Student()
+    void getInfo()
     {
-        cout << "non parameterized\n";
+        cout << "Parents class \n";
     }
+};
 
-    Student(string name)
+class Child : public Parent
+{
+public:
+    void getInfo()
     {
-        this->name = name;
-        cout << name;
+        cout << "child class \n";
     }
 };
 
 int main()
 {
-    Student s1("Durgesh");
+    Child c1;
+    Parent p1;
+
+    c1.getInfo();
+    
+    p1.getInfo();
 
     return 0;
 }
