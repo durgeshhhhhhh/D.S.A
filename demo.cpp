@@ -1,24 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Shape // abstract class
+void func()
 {
-    virtual void draw() = 0; // pure virtual function
-};
+    static int x = 10; // this code runs for 1-times
 
-class Circle : public Shape
-{
-public:
-    void draw()
-    {
-        cout << "Drawing circle";
-    }
-};
+    cout << x << endl; // This two lines run for all  times
+    x++;
+}
 
 int main()
 {
-    Circle c1;
-    c1.draw();
-
+    func();
+    func();
+    func();
+    func();
+    func();
     return 0;
 }
