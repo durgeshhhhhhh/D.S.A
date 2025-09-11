@@ -1,44 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Parent
+class Shape // abstract class
 {
-public:
-    void getInfo()
-    {
-        cout << "Parents class \n";
-    }
-
-    virtual void hello()
-    {
-        cout << "Hello from parent \n";
-    }
+    virtual void draw() = 0; // pure virtual function
 };
 
-class Child : public Parent
+class Circle : public Shape
 {
 public:
-    void getInfo()
+    void draw()
     {
-        cout << "child class \n";
-    }
-
-    void hello()
-    {
-        cout << "Hello from child \n";
+        cout << "Drawing circle";
     }
 };
 
 int main()
 {
-    Parent *ptr;
-    Child c1;
-
-    ptr = &c1;
-
-    ptr->hello();
-
-    ptr->getInfo();
+    Circle c1;
+    c1.draw();
 
     return 0;
 }
