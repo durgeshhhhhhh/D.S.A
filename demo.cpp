@@ -92,6 +92,36 @@ public:
         tail = temp;
     }
 
+    void insert(int val, int pos)
+    {
+        if (pos < 0)
+        {
+            cout << "Invalid position\n";
+            return;
+        }
+
+        if (pos == 0)
+        {
+            push_front(val);
+            return;
+        }
+
+        Node *temp = head;
+        for (int i = 0; i < pos - 1; i++)
+        {
+            if (temp == NULL)
+            {
+                cout << "Invalid Position\n";
+            }
+
+            temp = temp->next;
+        }
+
+        Node *newNode = new Node(val);
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+
     void printLL()
     {
         Node *temp = head;
@@ -109,13 +139,13 @@ int main()
 {
     List ll;
 
-    ll.push_front(1);
+    ll.push_front(3);
     ll.push_front(2);
 
     ll.printLL();
     cout << endl;
 
-    ll.push_front(3);
+    ll.push_front(1);
 
     ll.printLL();
     cout << endl;
@@ -133,6 +163,12 @@ int main()
     ll.pop_back();
 
     ll.printLL();
+    cout << endl;
+
+    ll.insert(4, 1);
+
+    ll.printLL();
+    cout << endl;
 
     return 0;
 }
