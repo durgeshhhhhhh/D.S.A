@@ -57,6 +57,41 @@ public:
         }
     }
 
+    void pop_front()
+    {
+        if (head == NULL)
+        {
+            cout << "LinkedList is empty";
+            return;
+        }
+        Node *temp = head;
+        head = head->next;
+
+        temp->next = NULL;
+        delete temp;
+    }
+
+    void pop_back()
+    {
+        if (head == NULL)
+        {
+            cout << "List is Empty";
+            return;
+        }
+        Node *temp = head;
+
+        while (temp->next != tail)
+        {
+            temp = temp->next;
+        }
+
+        temp->next = NULL;
+
+        delete tail;
+
+        tail = temp;
+    }
+
     void printLL()
     {
         Node *temp = head;
@@ -76,10 +111,28 @@ int main()
 
     ll.push_front(1);
     ll.push_front(2);
+
+    ll.printLL();
+    cout << endl;
+
     ll.push_front(3);
+
+    ll.printLL();
+    cout << endl;
+
     ll.push_back(0);
+
+    ll.printLL();
+    cout << endl;
+
+    ll.pop_front();
+
+    ll.printLL();
+    cout << endl;
+
+    ll.pop_back();
 
     ll.printLL();
 
     return 0;
-}   
+}
