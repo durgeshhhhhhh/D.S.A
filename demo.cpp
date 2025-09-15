@@ -1,45 +1,85 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void selectionSort(vector<int> &nums)
+class Node
 {
-    int n = nums.size();
+public:
+    int data;
+    Node *next;
 
-    for (int i = 0; i < n; i++)
+    Node(int val)
     {
-        int mini = i;
-        for (int j = i; j < n; j++)
-        {
-            if (nums[j] < nums[mini])
-            {
-                mini = j;
-            }
-        }
-        int temp = nums[i];
-        nums[i] = nums[mini];
-        nums[mini] = temp;
+        data = val;
+        next = NULL;
     }
-}
+};
+
+class List
+{
+
+    Node *head;
+    Node *tail;
+
+public:
+    List()
+    {
+        head = tail = NULL;
+    }
+
+    void push_front(int val)
+    {
+        Node *newNode = new Node(val);
+
+        if (head == NULL)
+        {
+            head = tail = newNode;
+            return;
+        }
+        else
+        {
+            newNode->next = head;
+            head = newNode;
+        }
+    }
+
+    void push_back(int val)
+    {
+        Node *newNode = new Node(val);
+
+        if (head == NULL)
+        {
+            head = tail = newNode;
+        }
+        else
+        {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+
+    void printLL()
+    {
+        Node *temp = head;
+
+        while (temp != NULL)
+        {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL" << endl;
+    }
+};
 
 int main()
 {
+    List ll;
 
-    int n;
-    cin >> n;
+    ll.push_front(1);
+    ll.push_front(2);
+    ll.push_front(3);
+    ll.push_back(0);
 
-    vector<int> nums(n);
-
-    for (int i = 0; i < n; i++)
-    {
-        cin >> nums[i];
-    }
-
-    selectionSort(nums);
-
-    for (int j = 0; j < n; j++)
-    {
-        cout << nums[j] << " ";
-    }
+    ll.printLL();
 
     return 0;
-}
+}   
