@@ -1,29 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void bubbleSort(vector<int> &nums)
+void insertionSort(vector<int> &nums)
 {
     int n = nums.size();
 
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 1; i < n; i++)
     {
-        bool isSwapped = false;
-        for (int j = 0; j < n - i - 1; j++)
+        int j = i;
+
+        while (j > 0 && nums[j] < nums[j - 1])
         {
-            if (nums[j] > nums[j + 1])
-            {
-                // swap(nums[j], nums[j + 1]);
-
-                int temp = nums[j];
-                nums[j] = nums[j + 1];
-                nums[j + 1] = temp;
-
-                isSwapped = true;
-            }
+            swap(nums[j], nums[j - 1]);
+            j--;
         }
-
-        if (!isSwapped)
-            break;
     }
 }
 
@@ -37,7 +27,7 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> nums[i];
 
-    bubbleSort(nums);
+    insertionSort(nums);
 
     for (int x : nums)
         cout << x << " ";
