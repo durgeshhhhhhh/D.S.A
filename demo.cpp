@@ -1,20 +1,55 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void insertionSort(vector<int> &nums)
+void merge(vector<int> &nums, int low, int mid, int high)
 {
-    int n = nums.size();
+    vector<int> ans;
+    int i = low;
+    int j = mid + 1;
 
-    for (int i = 1; i < n; i++)
+    while (i <= mid && j <= high)
     {
-        int j = i;
-
-        while (j > 0 && nums[j] < nums[j - 1])
+        if (nums[i] <= nums[j])
         {
-            swap(nums[j], nums[j - 1]);
-            j--;
+            ans.push_back(nums[i]);
+            i++;
+        }
+        else
+        {
+            ans.push_back(nums[j]);
+            j++;
         }
     }
+
+    while (i <= mid)
+    {
+        ans.push_back(nums[i]);
+        i++;
+    }
+
+    while (j <= high)
+    {
+        ans.push_back(nums[j]);
+        j++;
+    }
+
+    for (i = low; i <= high; i++)
+    {
+        nums[i] = ans[i - low];
+    }
+}
+
+void mergeSort(vector<int> &nums, int low, int high)
+{
+    if (low >= high)
+        return;
+
+    int mid = (low + high) / 2;
+
+    mergeSort(nums, low, mid);
+    mergeSort(nums, mid + 1, high);
+
+    merge(nums, low, mid, high);
 }
 
 int main()
@@ -27,7 +62,7 @@ int main()
     for (int i = 0; i < n; i++)
         cin >> nums[i];
 
-    insertionSort(nums);
+    mergeSort(nums, 0, n - 1);
 
     for (int x : nums)
         cout << x << " ";
