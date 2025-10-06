@@ -1,71 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void merge(vector<int> &nums, int low, int mid, int high)
+class ST
 {
     vector<int> ans;
-    int i = low;
-    int j = mid + 1;
 
-    while (i <= mid && j <= high)
+public:
+    void push(int val)
     {
-        if (nums[i] <= nums[j])
-        {
-            ans.push_back(nums[i]);
-            i++;
-        }
-        else
-        {
-            ans.push_back(nums[j]);
-            j++;
-        }
+        ans.push_back(val);
     }
 
-    while (i <= mid)
+    void pop()
     {
-        ans.push_back(nums[i]);
-        i++;
+        ans.pop_back();
     }
 
-    while (j <= high)
+    int top()
     {
-        ans.push_back(nums[j]);
-        j++;
+        return ans[ans.size() - 1];
     }
 
-    for (i = low; i <= high; i++)
+    bool isEmpty()
     {
-        nums[i] = ans[i - low];
+        return ans.size() == 0;
     }
-}
-
-void mergeSort(vector<int> &nums, int low, int high)
-{
-    if (low >= high)
-        return;
-
-    int mid = (low + high) / 2;
-
-    mergeSort(nums, low, mid);
-    mergeSort(nums, mid + 1, high);
-
-    merge(nums, low, mid, high);
-}
+};
 
 int main()
 {
-    int n;
-    cin >> n;
+    ST s;
 
-    vector<int> nums(n);
+    s.push(10);
+    s.push(20);
+    s.push(30);
 
-    for (int i = 0; i < n; i++)
-        cin >> nums[i];
+    while (!s.isEmpty())
+    {
+        cout << s.top() << " ";
+        s.pop();
+    }
 
-    mergeSort(nums, 0, n - 1);
-
-    for (int x : nums)
-        cout << x << " ";
+    cout << endl;
 
     return 0;
 }
