@@ -18,21 +18,21 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        while (st.size() > 0 && nums[st.top()] <= nums[i])
+        while (st.size() > 0 && st.top() >= nums[i])
         {
             st.pop();
         }
 
         if (st.empty())
         {
-            ans[i] = i + 1;
+            ans[i] = -1;
         }
         else
         {
-            ans[i] = i - st.top();
+            ans[i] = st.top();
         }
 
-        st.push(i);
+        st.push(nums[i]);
     }
 
     for (int i = 0; i < n; i++)
