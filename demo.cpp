@@ -46,15 +46,18 @@ int main()
         st.push(i);
     }
 
-    int ans = 0;
+    vector<int> ans;
     for (int i = 0; i < n; i++)
     {
         int height = heights[i];
         int width = right[i] - left[i] - 1;
-        ans = max(ans, height * width);
+        ans.push_back(height * width);
     }
 
-    cout << ans;
+    for (int i = 0; i < n; i++)
+    {
+        cout << ans[i] << " ";
+    }
 
     return 0;
 }
