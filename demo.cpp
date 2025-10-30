@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
+string reverseWordsInString(string s)
 {
-    string s = "My name is durgesh";
-
     int left = 0;
     int right = s.size() - 1;
 
@@ -13,7 +11,41 @@ int main()
         swap(s[left++], s[right--]);
     }
 
-    cout << s << endl;
+    string ans = "";
+    for (int i = 0; i < s.length(); i++)
+    {
+        string word = "";
+
+        while (i < s.length() && s[i] != ' ')
+        {
+            word += s[i];
+            i++;
+        }
+
+        int j = 0;
+        int k = word.length() - 1;
+
+        while (j < k)
+        {
+            swap(word[j], word[k]);
+            j++;
+            k--;
+        }
+
+        if (word.length() > 0)
+        {
+            ans += " " + word;
+        }
+    }
+
+    return ans.substr(1);
+}
+
+int main()
+{
+    string s = "My name is durgesh";
+
+    cout << reverseWordsInString(s) << endl;
 
     return 0;
 }
