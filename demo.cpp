@@ -3,61 +3,17 @@ using namespace std;
 
 int main()
 {
-    int n;
-    cin >> n;
+    string s = "My name is durgesh";
 
-    vector<int> heights(n);
+    int left = 0;
+    int right = s.size() - 1;
 
-    for (int i = 0; i < n; i++)
+    while (left < right)
     {
-        cin >> heights[i];
+        swap(s[left++], s[right--]);
     }
 
-    vector<int> left(n, 0);
-    vector<int> right(n, 0);
-    stack<int> st;
-
-    for (int i = 0; i < n; i++)
-    {
-        while (!st.empty() && heights[st.top()] >= heights[i])
-        {
-            st.pop();
-        }
-
-        left[i] = st.empty() ? -1 : st.top();
-
-        st.push(i);
-    }
-
-    while (!st.empty())
-    {
-        st.pop();
-    }
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        while (!st.empty() && heights[st.top()] >= heights[i])
-        {
-            st.pop();
-        }
-
-        right[i] = st.empty() ? n : st.top();
-
-        st.push(i);
-    }
-
-    vector<int> ans;
-    for (int i = 0; i < n; i++)
-    {
-        int height = heights[i];
-        int width = right[i] - left[i] - 1;
-        ans.push_back(height * width);
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << ans[i] << " ";
-    }
+    cout << s << endl;
 
     return 0;
 }
